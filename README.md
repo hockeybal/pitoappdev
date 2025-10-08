@@ -1,6 +1,6 @@
 # PitoApp
 
-![PitoApp](./LaunchPad.jpg)
+![PitoApp](./pito_logo.png)
 
 PitoApp is een moderne webapplicatie gebouwd met Next.js (frontend) en Strapi (CMS/backend). Het project omvat gebruikersauthenticatie, betalingsintegratie (Mollie), een dashboard, content management en meer. Ideaal voor SaaS-toepassingen met abonnementen en gebruikersbeheer.
 

@@ -1,111 +1,147 @@
-# LaunchPad - Official Strapi Demo
+# PitoApp
 
-![LaunchPad](./LaunchPad.jpg)
+![PitoApp](./LaunchPad.jpg)
 
-Welcome aboard **LaunchPad**, the official Strapi demo application, where we launch your content into the stratosphere at the speed of _"we-can't-even-measure-it!"_.
-This repository contains the following:
+PitoApp is een moderne webapplicatie gebouwd met Next.js (frontend) en Strapi (CMS/backend). Het project omvat gebruikersauthenticatie, betalingsintegratie (Mollie), een dashboard, content management en meer. Ideaal voor SaaS-toepassingen met abonnementen en gebruikersbeheer.
 
-- A Strapi project with content-types and data already onboard
-- A Next.js client that's primed and ready to fetch the content from Strapi faster than you can say "blast off!"
+Dit repository bevat:
+- Een Strapi backend met aangepaste content-types, API's en data seeding
+- Een Next.js frontend met moderne UI componenten, authenticatie en betalingsflows
 
-## 🌌 Get started
+## 🚀 Snel starten
 
-Strap yourself in! You can get started with this project on your local machine by following the instructions below, or you can [request a private instance on our website](https://strapi.io/demo)
+### Vereisten
+- Node.js >= 18
+- Yarn of NPM
+- PostgreSQL (voor productie) of SQLite (voor development)
 
-## 1. Clone Launchpad
+### 1. Repository klonen
 
-To infinity and beyond! 🚀 Clone the repo with this command:
-
-```
-git clone https://github.com/strapi/launchpad.git
-```
-
-- Navigate to your project folder by running `cd launchpad`.
-
-## 2. Set up environment variables
-
-Before you take off, set up the required environment variables for both Strapi and Next.js.
-
-To create the Strapi .env file, copy the content of the `./strapi/.env.example` file into a new file named `./strapi/.env`, then modify the values to match your setup:
-
-```sh
-cp ./strapi/.env.example ./strapi/.env
+```bash
+git clone https://github.com/hockeybal/pitoappdev.git
+cd pitoappdev
 ```
 
-Then do the same for the Next.js .env file, and modify it too:
+### 2. Environment variabelen instellen
 
-```sh
-cp ./next/.env.example ./next/.env
+Kopieer de voorbeeld bestanden en vul ze in met je eigen waarden:
+
+```bash
+cp strapi/.env.example strapi/.env
+cp next/.env.example next/.env
 ```
 
-## 3. Start Strapi
+**Belangrijke env vars:**
+- **Strapi (.env):**
+  - `DATABASE_CLIENT`: postgres (of sqlite voor dev)
+  - `DATABASE_URL`: Jouw database URL
+  - `JWT_SECRET`: Unieke secret voor tokens
+  - `ADMIN_JWT_SECRET`: Secret voor admin tokens
 
-Take a deep breath. It's time to power up the Strapi engines. Navigate to your ./my-projects/launchpad/strapi folder by running:
+- **Next.js (.env):**
+  - `NEXT_PUBLIC_API_URL`: URL naar je Strapi API (bijv. http://localhost:1337)
+  - `WEBSITE_URL`: Jouw productie domein
 
-Navigate to your `./my-projects/launchpad/strapi` folder by running `cd strapi` from your command line.
+### 3. Strapi starten
 
-- Run the following command in your `./launchpad/strapi` folder:
-
-```
-yarn && yarn seed && yarn develop
-```
-
-This will install dependencies, sprinkle in some data magic, and run the server. (You can run these commands separately, but why not be efficient?)
-
-## 4. Start Next.js
-
-We're almost ready for lift-off! Next.js is your sleek, futuristic interface for getting all that glorious content out into the world. 🚀
-
-Open a new terminal tab or window to leave Strapi running, and navigate to your `./my-projects/launchpad/next` folder by running `cd next`.
-
-- Run the following command in your `./launchpad/next` folder
-
-```
-yarn && yarn build && yarn start
+```bash
+cd strapi
+yarn install
+yarn seed  # Laadt voorbeeld data
+yarn develop  # Voor development
 ```
 
-This installs dependencies, builds your project, and starts your server. You’re now a spacefaring content master!
+Strapi draait standaard op http://localhost:1337
 
-## Features Overview ✨
+### 4. Next.js starten
 
-### User
+In een nieuwe terminal:
 
-<br />
+```bash
+cd next
+yarn install
+yarn dev  # Voor development
+```
 
-**An intuitive, minimal editor** The editor allows you to pull in dynamic blocks of content. It’s 100% open-source, and it’s fully extensible.<br />
-**Media Library** Upload images, video or any files and crop and optimize their sizes, without quality loss.<br />
-**Flexible content management** Build any type of category, section, format or flow to adapt to your needs. <br />
-**Sort and Filter** Built-in sorting and filtering: you can manage thousands of entries without effort.<br />
-**User-friendly interface** The most user-friendly open-source interface on the market.<br />
-**SEO optimized** Easily manage your SEO metadata with a repeatable field and use our Media Library to add captions, notes, and custom filenames to optimize the SEO of media assets.<br /><br />
+Next.js draait op http://localhost:3000
 
-### Global
+## ✨ Features
 
-<br />
+### Gebruikersbeheer
+- Authenticatie met NextAuth.js
+- Gebruikersregistratie en login
+- Dashboard voor ingelogde gebruikers
+- Rolgebaseerde toegang
 
-[Customizable API](https://strapi.io/features/customizable-api): Automatically build out the schema, models, controllers for your API from the editor. Get REST or GraphQL API out of the box without writing a single line of code.<br />
-[Media Library](https://strapi.io/features/media-library): The media library allows you to store your images, videos and files in your Strapi admin panel with many ways to visualize and manage them.<br />
-[Role-Based Access Control (RBAC)](https://strapi.io/features/custom-roles-and-permissions): Role-Based Access Control is a feature available in the Administration Panel settings that let your team members have access rights only to the information they need.<br />
-[Internationalization (i18n)](https://strapi.io/features/internationalization): Internationalization (i18n) lets you create many content versions, also called locales, in different languages and for different countries.<br />
-[Audit Logs](https://strapi.io/blog/reasons-and-best-practices-for-using-audit-logs-in-your-application)The Audit Logs section provides a searchable and filterable display of all activities performed by users of the Strapi application<br />
-[Data transfer](https://strapi.io/blog/importing-exporting-and-transferring-data-with-the-strapi-cli) Streams your data from one Strapi instance to another Strapi instance.<br />
-[Review Worfklows](https://docs.strapi.io/user-docs/settings/review-workflows) Create and manage any desired review stages for your content, enabling your team to collaborate in the content creation flow from draft to publication. <br />
+### Betalingen
+- Integratie met Mollie API
+- Abonnementen en eenmalige betalingen
+- Pro-rated billing ondersteuning
+- Betalingsstatus tracking
 
-## Resources
+### Content Management
+- Strapi CMS voor dynamische content
+- Blog posts, producten, pagina's
+- Media library voor afbeeldingen
+- Internationalisatie (i18n) ondersteuning
 
-[Docs](https://docs.strapi.io) • [Demo](https://strapi.io/demo) • [Forum](https://forum.strapi.io/) • [Discord](https://discord.strapi.io) • [Youtube](https://www.youtube.com/c/Strapi/featured) • [Strapi Design System](https://design-system.strapi.io/) • [Marketplace](https://market.strapi.io/) • [Cloud Free Trial](https://cloud.strapi.io)
+### UI/UX
+- Moderne design met Tailwind CSS
+- Responsieve componenten
+- Animaties en interacties
+- Dark mode ondersteuning
 
-## Todo
+### API's
+- RESTful API via Strapi
+- Webhooks voor betalingsupdates
+- Email templates en verzending
 
-- [ ] Implement the official Strapi SEO plugin
-- [ ] Implement the community Strapi preview plugin
-- [ ] Create localized content for the pricing plans and products
-- [ ] Populate creator fields when it'll work on Strapi 5 (article authors information are missing)
+## 🏗️ Project structuur
 
-## Customization
+```
+pitoappdev/
+├── next/                 # Next.js frontend
+│   ├── app/             # App router pages
+│   ├── components/      # Reusable UI components
+│   ├── lib/            # Utilities en helpers
+│   └── types/          # TypeScript types
+├── strapi/              # Strapi backend
+│   ├── src/
+│   │   ├── api/        # Content types en routes
+│   │   ├── plugins/    # Custom plugins
+│   │   └── middlewares/# Custom middleware
+│   └── config/         # Strapi configuratie
+└── scripts/            # Utility scripts
+```
 
-- The Strapi application contains a custom population middleware in order to populate more data than what it is set by default. You can find it in the `./strapi/src/middlewares/deepPopulate.ts` file.
+## 🚀 Deployment
 
-- The Strapi application contains a postinstall script that will regenerate an uuid for the project in order to get some anonymous usage information concerning this demo. You can disable it by removing the uuid inside the `./strapi/packages.json` file.
+Voor productie deployment:
 
-- The Strapi application contains a patch for the @strapi/admin package. It is only necessary for the hosted demos since we automatically create the Super Admin users for them when they request this demo on our website.
+1. **Database opzetten:** PostgreSQL op je server
+2. **Environment vars:** Stel productie waarden in
+3. **Builden:**
+   ```bash
+   cd strapi && yarn build
+   cd ../next && yarn build
+   ```
+4. **Starten:** Gebruik PM2 of Docker voor productie
+5. **Reverse proxy:** Nginx voor SSL en routing
+
+Zie de deployment gids voor gedetailleerde instructies.
+
+## 🤝 Bijdragen
+
+1. Fork het project
+2. Maak een feature branch: `git checkout -b feature/nieuwe-feature`
+3. Commit je changes: `git commit -m 'Add nieuwe feature'`
+4. Push naar de branch: `git push origin feature/nieuwe-feature`
+5. Open een Pull Request
+
+## 📝 Licentie
+
+Dit project is privé eigendom. Alle rechten voorbehouden.
+
+## 📞 Contact
+
+Voor vragen of ondersteuning, neem contact op met het development team.

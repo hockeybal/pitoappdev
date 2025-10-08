@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vacatures",
+  "info": {
+    "singularName": "vacature",
+    "pluralName": "vacatures",
+    "displayName": "Vacature",
+    "description": "Job postings created by users"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "company_name": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "location_type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "On-site",
+      "enum": [
+        "On-site",
+        "Remote",
+        "Hybrid"
+      ]
+    },
+    "employment_type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "Full-time",
+      "enum": [
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Internship",
+        "Freelance"
+      ]
+    },
+    "experience_level": {
+      "type": "enumeration",
+      "default": "Mid Level",
+      "enum": [
+        "Entry Level",
+        "Junior",
+        "Mid Level",
+        "Senior",
+        "Lead"
+      ]
+    },
+    "salary_min": {
+      "type": "integer"
+    },
+    "salary_max": {
+      "type": "integer"
+    },
+    "salary_period": {
+      "type": "enumeration",
+      "default": "per month",
+      "enum": [
+        "per hour",
+        "per month",
+        "per year"
+      ]
+    },
+    "requirements": {
+      "type": "text"
+    },
+    "benefits": {
+      "type": "text"
+    },
+    "application_email": {
+      "type": "email",
+      "required": true
+    },
+    "application_url": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "expires_at": {
+      "type": "date"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer"
+    }
+  }
+}

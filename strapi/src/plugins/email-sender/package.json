@@ -1,0 +1,10 @@
+{
+  "name": "email-sender",
+  "version": "1.0.0",
+  "description": "Plugin to send email templates to users",
+  "strapi": {
+    "name": "email-sender",
+    "description": "Plugin to send email templates to users",
+    "kind": "plugin"
+  }
+}

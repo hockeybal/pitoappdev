@@ -1,6 +1,6 @@
 ---
 name: 👩‍🔧 Something to fix
-about: Create a request about fixing a bug on LaunchPad
+about: Create a request about fixing a bug on Pito App
 labels: bug
 assignees: mcastres
 ---

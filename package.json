@@ -1,7 +1,7 @@
 {
-  "name": "strapi-next-launchpad-example",
+  "name": "pito-app",
   "version": "1.0.0",
-  "description": "Next.js Launchpad Example powered by Strapi",
+  "description": "Pito App powered by Strapi",
   "type": "module",
   "scripts": {
     "prepare": "husky",

@@ -6,6 +6,7 @@ import './globals.css';
 
 import { SlugProvider } from './context/SlugContext';
 import { Preview } from '@/components/preview';
+import { Providers } from '@/components/providers';
 
 export const viewport: Viewport = {
   themeColor: [
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Preview />
-        <SlugProvider>{children}</SlugProvider>
+        <Providers>
+          <Preview />
+          <SlugProvider>{children}</SlugProvider>
+        </Providers>
       </body>
     </html>
   );

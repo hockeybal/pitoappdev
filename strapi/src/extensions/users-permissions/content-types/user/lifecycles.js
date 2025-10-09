@@ -6,7 +6,12 @@
 
 module.exports = {
   async beforeCreate(event) {
-    const { data } = event;
+    const { data, params } = event;
+
+    // Add custom fields if they exist in params (from registration)
+    if (params && params.customFields) {
+      Object.assign(data, params.customFields);
+    }
 
     // Stel trial periode in voor nieuwe gebruikers: 2 weken
     const now = new Date();

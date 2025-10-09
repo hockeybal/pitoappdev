@@ -84,7 +84,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
               )}
             >
               <div className="absolute inset-x-0 bottom-0 w-3/4 mx-auto h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
-              Featured
+              Meest gekozen
             </div>
           )}
         </div>
@@ -96,7 +96,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
                 plan.featured && 'text-neutral-700'
               )}
             >
-              $
+              €
             </span>
           )}
           <span
@@ -111,7 +111,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
                 plan.featured && 'text-neutral-700'
               )}
             >
-              / launch
+              / Per jaar
             </span>
           )}
         </div>

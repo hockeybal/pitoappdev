@@ -113,21 +113,59 @@ export default function SignupPage() {
     setError('');
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`, {
+      // Step 1: Register with basic fields only
+      const basicData = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      const registerRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(basicData),
       });
 
-      const data = await res.json();
+      const registerData = await registerRes.json();
 
-      if (res.ok) {
-        router.push('/login?message=Account created successfully');
-      } else {
-        setError(data.error?.message || 'Registration failed');
+      if (!registerRes.ok) {
+        setError(registerData.error?.message || 'Registration failed');
+        setLoading(false);
+        return;
       }
+
+      // Step 2: Update user with additional fields
+      const userId = registerData.user.id;
+      const jwt = registerData.jwt;
+
+      const updateData = {
+        kvk_number: formData.kvk_number,
+        company_name: formData.company_name,
+        street_address: formData.street_address,
+        postal_code: formData.postal_code,
+        city: formData.city,
+        country: formData.country,
+        sector: formData.sector,
+        sub_sector: formData.sub_sector,
+      };
+
+      const updateRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/${userId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${jwt}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+
+      if (!updateRes.ok) {
+        console.error('Failed to update user profile');
+        // Still redirect to login since account was created
+      }
+
+      router.push('/login?message=Account created successfully');
     } catch (err) {
       setError('An error occurred');
     } finally {

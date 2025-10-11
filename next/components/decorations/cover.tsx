@@ -5,7 +5,7 @@ import React from 'react';
 
 export const Cover = ({ children }: { children?: React.ReactNode }) => {
   return (
-    <div className="relative inline-block bg-neutral-900 px-2 py-1">
+    <div className="relative inline-block bg-neutral-800 px-2 py-1 border border-neutral-300 shadow-sm">
       <span className="text-white">{children}</span>
       <CircleIcon className="absolute -right-[2px] -top-[2px]" />
       <CircleIcon className="absolute -bottom-[2px] -right-[2px]" delay={0.4} />
@@ -38,7 +38,7 @@ export const CircleIcon = ({
         ease: 'linear',
         repeatDelay: delay,
       }}
-      className={`pointer-events-none h-2 w-2 rounded-full bg-white opacity-20 ${className ?? ''}`}
+      className={`pointer-events-none h-2 w-2 rounded-full bg-neutral-700 opacity-40 ${className ?? ''}`}
       style={{}}
     />
   );

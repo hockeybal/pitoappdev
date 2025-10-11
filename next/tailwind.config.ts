@@ -14,10 +14,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        charcoal: '#08090A',
-        lightblack: '#1C1C1C',
-        secondary: '#E6E6E6',
-        muted: 'var(--neutral-200)',
+        charcoal: '#ffffff',
+        lightblack: '#f6f6f6',
+        secondary: '#1a1a1a',
+        muted: 'var(--neutral-600)',
+        primary: '#ffffff',
+        'brand-orange': '#ff7e1d',
+        'brand-blue': '#0c6ff9',
+        'brand-light-blue': '#32aaff',
       },
       boxShadow: {
         derek: `0px 0px 0px 1px rgb(0 0 0 / 0.06),

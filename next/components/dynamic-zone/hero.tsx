@@ -55,7 +55,7 @@ export const Hero = ({
             </Button>
           ))}
       </div>
-      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-charcoal to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-80 w-full bg-gradient-to-t from-[#f6f6f6] to-transparent" />
     </div>
   );
 };

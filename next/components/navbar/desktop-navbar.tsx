@@ -54,7 +54,7 @@ export const DesktopNavbar = ({
       )}
       animate={{
         width: showBackground ? '80%' : '100%',
-        background: showBackground ? 'var(--neutral-900)' : 'transparent',
+        background: showBackground ? 'rgba(255, 255, 255, 0.8)' : 'transparent',
       }}
       transition={{
         duration: 0.4,
@@ -69,7 +69,7 @@ export const DesktopNavbar = ({
             transition={{
               duration: 1,
             }}
-            className="absolute inset-0 h-full w-full bg-neutral-900 pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full"
+            className="absolute inset-0 h-full w-full bg-white/80 backdrop-blur-md pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full border border-neutral-200"
           />
         )}
       </AnimatePresence>

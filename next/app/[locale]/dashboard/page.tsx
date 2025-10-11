@@ -141,8 +141,8 @@ export default function DashboardPage() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      <div className="min-h-screen flex items-center justify-center bg-[#f6f6f6]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
       </div>
     );
   }
@@ -153,16 +153,16 @@ export default function DashboardPage() {
 
   if (!isActive) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#f6f6f6] flex items-center justify-center">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
           <IconShieldCheck className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Toegang Geblokkeerd</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-2xl font-bold text-neutral-900 mb-4">Toegang Geblokkeerd</h2>
+          <p className="text-neutral-600 mb-6">
             Je proefperiode is verlopen. Kies een abonnement om verder te gaan met het dashboard.
           </p>
           <Link
             href={`/${window.location.pathname.split('/')[1]}/upgrade`}
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-orange hover:bg-brand-orange/90 transition-colors"
           >
             Kies een Plan
             <IconChevronRight className="ml-2 h-5 w-5" />
@@ -188,27 +188,27 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f6f6f6]">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-sm border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
             <div className="flex items-center space-x-4">
               <button 
-                className="p-2 text-gray-400 hover:text-gray-600"
+                className="p-2 text-neutral-500 hover:text-brand-blue transition-colors"
                 title="Meldingen"
               >
                 <IconBell className="h-6 w-6" />
               </button>
               <div className="flex items-center space-x-3">
                 <div className="text-sm">
-                  <p className="font-medium text-gray-900">{userProfile.username}</p>
-                  <p className="text-gray-500">{userProfile.email}</p>
+                  <p className="font-medium text-neutral-900">{userProfile.username}</p>
+                  <p className="text-neutral-500">{userProfile.email}</p>
                 </div>
                 <button
                   onClick={handleSignOut}
-                  className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+                  className="p-2 text-neutral-500 hover:text-red-600 transition-colors"
                   title="Uitloggen"
                 >
                   <IconLogout className="h-6 w-6" />
@@ -231,8 +231,8 @@ export default function DashboardPage() {
                       onClick={() => setActiveTab(item.id as ActiveTab)}
                       className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
                         activeTab === item.id
-                          ? 'bg-indigo-50 text-indigo-700'
-                          : 'text-gray-700 hover:bg-gray-50'
+                          ? 'bg-brand-blue/10 text-brand-blue'
+                          : 'text-neutral-700 hover:bg-neutral-50'
                       }`}
                     >
                       <item.icon className="h-5 w-5" />
@@ -290,9 +290,9 @@ function DashboardOverview({ session, plan, customer, userProfile }: {
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg p-6 text-white">
+      <div className="bg-gradient-to-r from-brand-blue to-brand-light-blue rounded-lg p-6 text-white">
         <h2 className="text-2xl font-bold mb-2">Welkom terug, {userProfile.username}!</h2>
-        <p className="text-indigo-100">Hier is wat er vandaag gebeurt met je account.</p>
+        <p className="opacity-90">Hier is wat er vandaag gebeurt met je account.</p>
       </div>
 
       {/* Stats Grid */}
@@ -301,17 +301,17 @@ function DashboardOverview({ session, plan, customer, userProfile }: {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Huidig Plan</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-sm text-neutral-600">Huidig Plan</p>
+              <p className="text-2xl font-bold text-neutral-900">
                 {plan ? plan.name : 'Geen Plan'}
               </p>
             </div>
-            <IconCreditCard className="h-8 w-8 text-indigo-600" />
+            <IconCreditCard className="h-8 w-8 text-brand-orange" />
           </div>
           {plan && (
             <div className="mt-4">
-              <p className="text-sm text-gray-600">{plan.sub_text}</p>
-              <p className="text-lg font-semibold text-indigo-600 mt-2">€{plan.price}/maand</p>
+              <p className="text-sm text-neutral-600">{plan.sub_text}</p>
+              <p className="text-lg font-semibold text-brand-orange mt-2">€{plan.price}/maand</p>
             </div>
           )}
         </div>
@@ -320,35 +320,35 @@ function DashboardOverview({ session, plan, customer, userProfile }: {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Account Status</p>
+              <p className="text-sm text-neutral-600">Account Status</p>
               <p className="text-2xl font-bold text-green-600">Actief</p>
             </div>
             <IconShieldCheck className="h-8 w-8 text-green-600" />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-neutral-600 mt-4">
             lid sinds {customer ? new Date(customer.created_at).toLocaleDateString() : 'Recent'}
           </p>
         </div>
 
         {/* Quick Actions */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="font-semibold text-gray-900 mb-4">Snelle Acties</h3>
+          <h3 className="font-semibold text-neutral-900 mb-4">Snelle Acties</h3>
           <div className="space-y-3">
             {!plan && (
               <Link
                 href="/pricing"
-                className="flex items-center justify-between p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors"
+                className="flex items-center justify-between p-3 bg-brand-blue/10 rounded-lg hover:bg-brand-blue/15 transition-colors"
               >
-                <span className="text-indigo-700 font-medium">Kies een Plan</span>
-                <IconChevronRight className="h-4 w-4 text-indigo-600" />
+                <span className="text-brand-orange font-medium">Kies een Plan</span>
+                <IconChevronRight className="h-4 w-4 text-brand-orange" />
               </Link>
             )}
             <Link
               href="/products"
-              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+              className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg hover:bg-neutral-100 transition-colors"
             >
-              <span className="text-gray-700">Blader door Producten</span>
-              <IconChevronRight className="h-4 w-4 text-gray-600" />
+              <span className="text-neutral-700">Blader door Producten</span>
+              <IconChevronRight className="h-4 w-4 text-neutral-600" />
             </Link>
           </div>
         </div>
@@ -495,10 +495,10 @@ function ProfileSection({
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Profiel Informatie</h2>
+        <h2 className="text-xl font-bold text-neutral-900">Profiel Informatie</h2>
         <button
           onClick={() => setIsEditing(!isEditing)}
-          className="px-4 py-2 text-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors"
+          className="px-4 py-2 text-brand-orange border border-brand-orange rounded-lg hover:bg-brand-blue/10 transition-colors"
         >
           {isEditing ? 'Annuleren' : 'Profiel Bewerken'}
         </button>
@@ -516,46 +516,46 @@ function ProfileSection({
 
       <div className="space-y-6">
         <div className="flex items-center space-x-4">
-          <div className="h-20 w-20 bg-indigo-100 rounded-full flex items-center justify-center">
-            <IconUser className="h-10 w-10 text-indigo-600" />
+          <div className="h-20 w-20 bg-brand-blue/15 rounded-full flex items-center justify-center">
+            <IconUser className="h-10 w-10 text-brand-orange" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{formData.username}</h3>
-            <p className="text-gray-600">{formData.email}</p>
+            <h3 className="text-lg font-semibold text-neutral-900">{formData.username}</h3>
+            <p className="text-neutral-600">{formData.email}</p>
           </div>
         </div>
 
         {isEditing ? (
           <form className="space-y-6">
             {/* Basic Information */}
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <div className="border-b border-neutral-200 pb-6">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                 <IconUser className="h-5 w-5 mr-2" />
                 Basis Informatie
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Gebruikersnaam
                   </label>
                   <input
                     type="text"
                     value={formData.username}
                     onChange={(e) => setFormData({...formData, username: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                     placeholder="Voer je gebruikersnaam in"
                     title="Gebruikersnaam"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     E-mail
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                     placeholder="Voer je e-mail in"
                     title="E-mail"
                   />
@@ -564,35 +564,35 @@ function ProfileSection({
             </div>
 
             {/* Business Information */}
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <div className="border-b border-neutral-200 pb-6">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                 <IconBuilding className="h-5 w-5 mr-2" />
                 Bedrijfs Informatie
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     KVK Nummer
                   </label>
                   <input
                     type="text"
                     value={formData.kvk_number || ''}
                     onChange={(e) => setFormData({...formData, kvk_number: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                     placeholder="Voer je KVK nummer in"
                     maxLength={20}
                   />
-                  <p className="mt-1 text-sm text-gray-500">Kamer van Koophandel registratienummer</p>
+                  <p className="mt-1 text-sm text-neutral-500">Kamer van Koophandel registratienummer</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Bedrijfsnaam
                   </label>
                   <input
                     type="text"
                     value={formData.company_name || ''}
                     onChange={(e) => setFormData({...formData, company_name: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                     placeholder="Voer je bedrijfsnaam in"
                   />
                 </div>
@@ -601,57 +601,57 @@ function ProfileSection({
 
             {/* Address Information */}
             <div className="pb-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                 <IconMapPin className="h-5 w-5 mr-2" />
                 Adres Informatie
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-2">
                     Straatadres
                   </label>
                   <input
                     type="text"
                     value={formData.street_address || ''}
                     onChange={(e) => setFormData({...formData, street_address: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                    className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                     placeholder="Voer je straatadres in"
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
                       Postcode
                     </label>
                     <input
                       type="text"
                       value={formData.postal_code || ''}
                       onChange={(e) => setFormData({...formData, postal_code: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                       placeholder="1234 AB"
                       maxLength={10}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
                       Stad
                     </label>
                     <input
                       type="text"
                       value={formData.city || ''}
                       onChange={(e) => setFormData({...formData, city: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                       placeholder="Voer je stad in"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
                       Land
                     </label>
                     <select
                       value={formData.country || 'Netherlands'}
                       onChange={(e) => setFormData({...formData, country: e.target.value})}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue text-neutral-900"
                       title="Selecteer je land"
                     >
                       <option value="Netherlands">Nederland</option>
@@ -667,12 +667,12 @@ function ProfileSection({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex space-x-3 pt-4 border-t border-gray-200">
+            <div className="flex space-x-3 pt-4 border-t border-neutral-200">
               <button
                 type="button"
                 onClick={handleSaveProfile}
                 disabled={isLoading}
-                className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? 'Saving...' : 'Save Changes'}
               </button>
@@ -680,7 +680,7 @@ function ProfileSection({
                 type="button"
                 onClick={handleCancel}
                 disabled={isLoading}
-                className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50"
+                className="px-6 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors disabled:opacity-50"
               >
                 Cancel
               </button>
@@ -690,25 +690,25 @@ function ProfileSection({
           <div className="space-y-8">
             {/* Basic Information */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                 <IconUser className="h-5 w-5 mr-2" />
                 Basic Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                  <p className="text-gray-900">{formData.username}</p>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1">Username</label>
+                  <p className="text-neutral-900">{formData.username}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <p className="text-gray-900">{formData.email}</p>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1">Email</label>
+                  <p className="text-neutral-900">{formData.email}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">User ID</label>
-                  <p className="text-gray-900 font-mono text-sm">{session.user?.id}</p>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1">User ID</label>
+                  <p className="text-neutral-900 font-mono text-sm">{session.user?.id}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Account Status</label>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1">Account Status</label>
                   <p className="text-green-600 font-medium">Active</p>
                 </div>
               </div>
@@ -717,21 +717,21 @@ function ProfileSection({
             {/* Business Information */}
             {(formData.kvk_number || formData.company_name) && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                   <IconBuilding className="h-5 w-5 mr-2" />
                   Business Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {formData.kvk_number && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">KVK Number</label>
-                      <p className="text-gray-900">{formData.kvk_number}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">KVK Number</label>
+                      <p className="text-neutral-900">{formData.kvk_number}</p>
                     </div>
                   )}
                   {formData.company_name && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-                      <p className="text-gray-900">{formData.company_name}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">Company Name</label>
+                      <p className="text-neutral-900">{formData.company_name}</p>
                     </div>
                   )}
                 </div>
@@ -741,33 +741,33 @@ function ProfileSection({
             {/* Address Information */}
             {(formData.street_address || formData.postal_code || formData.city || formData.country) && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
                   <IconMapPin className="h-5 w-5 mr-2" />
                   Address Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {formData.street_address && (
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
-                      <p className="text-gray-900">{formData.street_address}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">Street Address</label>
+                      <p className="text-neutral-900">{formData.street_address}</p>
                     </div>
                   )}
                   {formData.postal_code && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
-                      <p className="text-gray-900">{formData.postal_code}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">Postal Code</label>
+                      <p className="text-neutral-900">{formData.postal_code}</p>
                     </div>
                   )}
                   {formData.city && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                      <p className="text-gray-900">{formData.city}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">City</label>
+                      <p className="text-neutral-900">{formData.city}</p>
                     </div>
                   )}
                   {formData.country && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Land</label>
-                      <p className="text-gray-900">{formData.country}</p>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1">Land</label>
+                      <p className="text-neutral-900">{formData.country}</p>
                     </div>
                   )}
                 </div>
@@ -776,13 +776,13 @@ function ProfileSection({
 
             {/* Empty state for missing business/address info */}
             {!formData.kvk_number && !formData.company_name && !formData.street_address && !formData.postal_code && !formData.city && (
-              <div className="bg-gray-50 rounded-lg p-6 text-center">
-                <IconBuilding className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Vul Je Profiel Aan</h3>
-                <p className="text-gray-600 mb-4">Voeg je bedrijfsgegevens en adres toe om je profiel te voltooien.</p>
+              <div className="bg-neutral-50 rounded-lg p-6 text-center">
+                <IconBuilding className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-neutral-900 mb-2">Vul Je Profiel Aan</h3>
+                <p className="text-neutral-600 mb-4">Voeg je bedrijfsgegevens en adres toe om je profiel te voltooien.</p>
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                  className="px-4 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors"
                 >
                   Bedrijfsgegevens Toevoegen
                 </button>
@@ -810,12 +810,12 @@ function SubscriptionSection({ plan, customer, session }: { plan: Plan | null; c
     const statusColors = {
       active: 'bg-green-100 text-green-800',
       expired: 'bg-red-100 text-red-800',
-      cancelled: 'bg-gray-100 text-gray-800',
+      cancelled: 'bg-neutral-100 text-neutral-800',
     };
 
     return (
       <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-        statusColors[status as keyof typeof statusColors] || 'bg-gray-100 text-gray-800'
+        statusColors[status as keyof typeof statusColors] || 'bg-neutral-100 text-neutral-800'
       }`}>
         {status}
       </span>
@@ -826,25 +826,25 @@ function SubscriptionSection({ plan, customer, session }: { plan: Plan | null; c
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-sm p-6">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-gray-900">Abonnementsgegevens</h2>
+          <h2 className="text-xl font-bold text-neutral-900">Abonnementsgegevens</h2>
           {customer?.subscription_status && getStatusBadge(customer.subscription_status)}
         </div>
         
         {plan ? (
           <div className="space-y-6">
             {/* Current Plan Card */}
-            <div className={`p-6 rounded-lg border-2 ${plan.featured ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200'}`}>
+            <div className={`p-6 rounded-lg border-2 ${plan.featured ? 'border-brand-blue bg-brand-blue/10' : 'border-neutral-200'}`}>
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">{plan.name}</h3>
-                  <p className="text-gray-600 mt-1">{plan.sub_text}</p>
+                  <h3 className="text-lg font-semibold text-neutral-900">{plan.name}</h3>
+                  <p className="text-neutral-600 mt-1">{plan.sub_text}</p>
                   <div className="flex items-baseline mt-4">
-                    <span className="text-3xl font-bold text-indigo-600">€{plan.price}</span>
-                    <span className="text-gray-600 ml-2">/maand</span>
+                    <span className="text-3xl font-bold text-brand-orange">€{plan.price}</span>
+                    <span className="text-neutral-600 ml-2">/maand</span>
                   </div>
                 </div>
                 {plan.featured && (
-                  <span className="px-3 py-1 bg-indigo-600 text-white text-sm rounded-full">
+                  <span className="px-3 py-1 bg-brand-orange text-white text-sm rounded-full">
                     Uitgelicht
                   </span>
                 )}
@@ -852,18 +852,18 @@ function SubscriptionSection({ plan, customer, session }: { plan: Plan | null; c
 
               {/* Subscription Dates */}
               {customer && (customer.subscription_start_date || customer.subscription_end_date) && (
-                <div className="border-t border-gray-200 pt-4">
+                <div className="border-t border-neutral-200 pt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {customer.subscription_start_date && (
                       <div>
-                        <p className="text-sm text-gray-600">Abonnement Gestart</p>
-                        <p className="font-medium text-gray-900">{formatDate(customer.subscription_start_date)}</p>
+                        <p className="text-sm text-neutral-600">Abonnement Gestart</p>
+                        <p className="font-medium text-neutral-900">{formatDate(customer.subscription_start_date)}</p>
                       </div>
                     )}
                     {customer.subscription_end_date && (
                       <div>
-                        <p className="text-sm text-gray-600">Volgende Factureringsdatum</p>
-                        <p className="font-medium text-gray-900">{formatDate(customer.subscription_end_date)}</p>
+                        <p className="text-sm text-neutral-600">Volgende Factureringsdatum</p>
+                        <p className="font-medium text-neutral-900">{formatDate(customer.subscription_end_date)}</p>
                       </div>
                     )}
                   </div>
@@ -875,23 +875,23 @@ function SubscriptionSection({ plan, customer, session }: { plan: Plan | null; c
             <div className="flex space-x-3">
               <Link
                 href="/pricing"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                className="px-4 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors"
               >
                 Plan Upgraden
               </Link>
-              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="px-4 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors">
                 Abonnement Beheren
               </button>
             </div>
           </div>
         ) : (
           <div className="text-center py-12">
-            <IconCreditCard className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Geen Actief Abonnement</h3>
-            <p className="text-gray-600 mb-6">Kies een plan om te beginnen met onze diensten.</p>
+            <IconCreditCard className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-neutral-900 mb-2">Geen Actief Abonnement</h3>
+            <p className="text-neutral-600 mb-6">Kies een plan om te beginnen met onze diensten.</p>
             <Link
               href="/pricing"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              className="px-6 py-3 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors"
             >
               Plannen Bekijken
             </Link>
@@ -902,10 +902,10 @@ function SubscriptionSection({ plan, customer, session }: { plan: Plan | null; c
       {/* Plan Features */}
       {plan && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Plan Kenmerken</h3>
-          <div className="text-gray-600">
+          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Plan Kenmerken</h3>
+          <div className="text-neutral-600">
             <p>Je huidige plan bevat alle functies die je nodig hebt om te beginnen.</p>
-            <p className="mt-2">Meer functies nodig? <Link href="/pricing" className="text-indigo-600 hover:text-indigo-700">Upgrade je plan</Link> voor extra voordelen.</p>
+            <p className="mt-2">Meer functies nodig? <Link href="/pricing" className="text-brand-orange hover:text-brand-orange">Upgrade je plan</Link> voor extra voordelen.</p>
           </div>
         </div>
       )}
@@ -1037,12 +1037,12 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
       paid: 'bg-green-100 text-green-800',
       pending: 'bg-yellow-100 text-yellow-800',
       failed: 'bg-red-100 text-red-800',
-      cancelled: 'bg-gray-100 text-gray-800',
+      cancelled: 'bg-neutral-100 text-neutral-800',
     };
 
     return (
       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-        statusColors[status as keyof typeof statusColors] || 'bg-gray-100 text-gray-800'
+        statusColors[status as keyof typeof statusColors] || 'bg-neutral-100 text-neutral-800'
       }`}>
         {status}
       </span>
@@ -1052,45 +1052,45 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">Billing & Payments</h2>
+        <h2 className="text-xl font-bold text-neutral-900 mb-6">Billing & Payments</h2>
         
         <div className="space-y-6">
           {/* Payment Methods */}
           <div>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Betaalmethodes</h3>
+              <h3 className="text-lg font-semibold text-neutral-900">Betaalmethodes</h3>
               <button 
                 onClick={() => setShowAddPaymentMethod(true)}
-                className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors"
+                className="px-4 py-2 bg-brand-orange text-white text-sm rounded-lg hover:bg-brand-orange/90 transition-colors"
               >
                 Betaalmethode Toevoegen
               </button>
             </div>
             
-            <div className="border border-gray-200 rounded-lg p-4">
+            <div className="border border-neutral-200 rounded-lg p-4">
               {loadingPaymentMethods ? (
                 <div className="text-center py-6">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                  <p className="text-gray-600">Betaalmethodes laden...</p>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-orange mx-auto mb-4"></div>
+                  <p className="text-neutral-600">Betaalmethodes laden...</p>
                 </div>
               ) : paymentMethods.length > 0 ? (
                 <div className="space-y-3">
                   {paymentMethods.map((method) => (
-                    <div key={method.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <div key={method.id} className="flex items-center justify-between p-3 border border-neutral-200 rounded-lg">
                       <div className="flex items-center space-x-3">
-                        <IconCreditCard className="h-6 w-6 text-gray-400" />
+                        <IconCreditCard className="h-6 w-6 text-neutral-400" />
                         <div>
-                          <p className="font-medium text-gray-900">
+                          <p className="font-medium text-neutral-900">
                             {method.methodName || method.method} •••• {method.details?.cardNumber?.slice(-4) || '****'}
                           </p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-neutral-600">
                             Toegevoegd {new Date(method.createdAt).toLocaleDateString()}
                           </p>
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          method.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                          method.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-neutral-100 text-neutral-800'
                         }`}>
                           {method.status === 'active' ? 'actief' : method.status}
                         </span>
@@ -1107,21 +1107,21 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
                 </div>
               ) : (
                 <div className="text-center py-6">
-                  <IconCreditCard className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-                  <p className="text-gray-600 mb-2">Geen opgeslagen betaalmethodes</p>
-                  <p className="text-sm text-gray-500 mb-4">
+                  <IconCreditCard className="h-12 w-12 text-neutral-300 mx-auto mb-3" />
+                  <p className="text-neutral-600 mb-2">Geen opgeslagen betaalmethodes</p>
+                  <p className="text-sm text-neutral-500 mb-4">
                     Betaalmethodes worden automatisch opgeslagen wanneer je een aankoop doet
                   </p>
                   <button
                     onClick={() => setShowAddPaymentMethod(true)}
-                    className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
+                    className="text-brand-orange hover:text-brand-orange text-sm font-medium"
                   >
                     Betaalmethode Toevoegen via Mollie
                   </button>
                 </div>
               )}
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <p className="text-xs text-gray-500 text-center">
+              <div className="mt-4 pt-4 border-t border-neutral-100">
+                <p className="text-xs text-neutral-500 text-center">
                   💡 Betaalmethodes worden veilig opgeslagen door Mollie, niet op onze servers
                 </p>
               </div>
@@ -1130,10 +1130,10 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
 
           {/* Billing History */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Betaalgeschiedenis</h3>
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="p-4 border-b border-gray-200 bg-gray-50">
-                <div className="grid grid-cols-5 gap-4 text-sm font-medium text-gray-700">
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Betaalgeschiedenis</h3>
+            <div className="border border-neutral-200 rounded-lg overflow-hidden">
+              <div className="p-4 border-b border-neutral-200 bg-neutral-50">
+                <div className="grid grid-cols-5 gap-4 text-sm font-medium text-neutral-700">
                   <span>Datum</span>
                   <span>Beschrijving</span>
                   <span>Bedrag</span>
@@ -1145,25 +1145,25 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
               <div className="divide-y divide-gray-200">
                 {loadingPayments ? (
                   <div className="p-8 text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
-                    <p className="text-gray-600 mt-2">Betaalgeschiedenis laden...</p>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-orange mx-auto"></div>
+                    <p className="text-neutral-600 mt-2">Betaalgeschiedenis laden...</p>
                   </div>
                 ) : paymentHistory.length > 0 ? (
                   paymentHistory.map((payment) => (
                     <div key={payment.id} className="p-4">
                       <div className="grid grid-cols-5 gap-4 text-sm">
-                        <span className="text-gray-900">{formatDate(payment.createdAt)}</span>
-                        <span className="text-gray-900">{payment.description}</span>
-                        <span className="font-medium text-gray-900">
+                        <span className="text-neutral-900">{formatDate(payment.createdAt)}</span>
+                        <span className="text-neutral-900">{payment.description}</span>
+                        <span className="font-medium text-neutral-900">
                           {formatAmount(payment.amount, payment.currency)}
                         </span>
                         <span>{getStatusBadge(payment.status)}</span>
                         <div className="space-x-2">
-                          <button className="text-indigo-600 hover:text-indigo-700 text-sm">
+                          <button className="text-brand-orange hover:text-brand-orange text-sm">
                             View
                           </button>
                           {payment.status === 'paid' && (
-                            <button className="text-indigo-600 hover:text-indigo-700 text-sm">
+                            <button className="text-brand-orange hover:text-brand-orange text-sm">
                               Download
                             </button>
                           )}
@@ -1173,9 +1173,9 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
                   ))
                 ) : (
                   <div className="p-8 text-center">
-                    <IconCreditCard className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600">Geen betaalgeschiedenis beschikbaar.</p>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <IconCreditCard className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                    <p className="text-neutral-600">Geen betaalgeschiedenis beschikbaar.</p>
+                    <p className="text-sm text-neutral-500 mt-1">
                       Je betalingstransacties verschijnen hier.
                     </p>
                   </div>
@@ -1186,33 +1186,33 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
 
           {/* Billing Info */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Factureringsinformatie</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Factureringsinformatie</h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-3">Factuuradres</h4>
+              <div className="border border-neutral-200 rounded-lg p-4">
+                <h4 className="font-medium text-neutral-900 mb-3">Factuuradres</h4>
                 <div className="text-center py-4">
-                  <p className="text-gray-500 text-sm mb-3">Geen factuuradres geregistreerd</p>
-                  <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700">
+                  <p className="text-neutral-500 text-sm mb-3">Geen factuuradres geregistreerd</p>
+                  <button className="px-4 py-2 bg-brand-orange text-white text-sm rounded-lg hover:bg-brand-orange/90">
                     Factuuradres Toevoegen
                   </button>
                 </div>
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <p className="text-xs text-gray-500">
+                <div className="mt-3 pt-3 border-t border-neutral-100">
+                  <p className="text-xs text-neutral-500">
                     💡 Factuuradres wordt verzameld tijdens checkout via Mollie
                   </p>
                 </div>
               </div>
               
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h4 className="font-medium text-gray-900 mb-3">Belastinginformatie</h4>
+              <div className="border border-neutral-200 rounded-lg p-4">
+                <h4 className="font-medium text-neutral-900 mb-3">Belastinginformatie</h4>
                 <div className="text-center py-4">
-                  <p className="text-gray-500 text-sm mb-3">Geen belastinginformatie geconfigureerd</p>
-                  <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700">
+                  <p className="text-neutral-500 text-sm mb-3">Geen belastinginformatie geconfigureerd</p>
+                  <button className="px-4 py-2 bg-brand-orange text-white text-sm rounded-lg hover:bg-brand-orange/90">
                     Belastinginstellingen Configureren
                   </button>
                 </div>
-                <div className="mt-3 pt-3 border-t border-gray-100">
-                  <p className="text-xs text-gray-500">
+                <div className="mt-3 pt-3 border-t border-neutral-100">
+                  <p className="text-xs text-neutral-500">
                     💡 Belastingafhandeling wordt beheerd door Mollie gebaseerd op je bedrijfslocatie
                   </p>
                 </div>
@@ -1222,16 +1222,16 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
 
           {/* Next Payment */}
           {customer?.plan && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="bg-brand-blue/10 border border-brand-blue/20 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-medium text-blue-900">Volgende Betaling</h4>
-                  <p className="text-sm text-blue-700 mt-1">
+                  <h4 className="font-medium text-brand-blue">Volgende Betaling</h4>
+                  <p className="text-sm text-brand-blue mt-1">
                     Je volgende betaling van €{customer.plan.price} wordt afgeschreven op{' '}
                     {new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString()}
                   </p>
                 </div>
-                <button className="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="px-4 py-2 bg-brand-blue text-white text-sm rounded-lg hover:bg-brand-blue transition-colors">
                   Betaling Bijwerken
                 </button>
               </div>
@@ -1245,10 +1245,10 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Betaalmethode Toevoegen</h3>
+              <h3 className="text-lg font-semibold text-neutral-900">Betaalmethode Toevoegen</h3>
               <button
                 onClick={() => setShowAddPaymentMethod(false)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-neutral-400 hover:text-neutral-600"
               >
                 <IconX className="h-6 w-6" />
               </button>
@@ -1256,18 +1256,18 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
 
             <div className="space-y-4">
               <div className="text-center">
-                <IconCreditCard className="h-12 w-12 text-indigo-600 mx-auto mb-4" />
-                <p className="text-gray-600 mb-4">
+                <IconCreditCard className="h-12 w-12 text-brand-orange mx-auto mb-4" />
+                <p className="text-neutral-600 mb-4">
                   Je wordt doorgestuurd naar Mollie om veilig een betaalmethode toe te voegen. Dit is een eenmalige €0,01 verificatiekosten die wordt terugbetaald.
                 </p>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-brand-blue/10 border border-brand-blue/20 rounded-lg p-4">
                 <div className="flex items-start space-x-3">
-                  <IconShieldCheck className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <IconShieldCheck className="h-5 w-5 text-brand-blue mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-medium text-blue-900">Veilig & PCI Compliant</h4>
-                    <p className="text-sm text-blue-700 mt-1">
+                    <h4 className="text-sm font-medium text-brand-blue">Veilig & PCI Compliant</h4>
+                    <p className="text-sm text-brand-blue mt-1">
                       Je betalingsgegevens worden veilig verwerkt door Mollie en nooit opgeslagen op onze servers.
                     </p>
                   </div>
@@ -1277,7 +1277,7 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
               <div className="flex space-x-3">
                 <button
                   onClick={() => setShowAddPaymentMethod(false)}
-                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
                   disabled={isCreatingPaymentMethod}
                 >
                   Annuleren
@@ -1285,7 +1285,7 @@ function BillingSection({ customer, session }: { customer: Customer | null; sess
                 <button
                   onClick={handleAddPaymentMethod}
                   disabled={isCreatingPaymentMethod}
-                  className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 px-4 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isCreatingPaymentMethod ? 'Instellen...' : 'Doorgaan naar Mollie'}
                 </button>
@@ -1357,34 +1357,34 @@ function SettingsSection({ session }: { session: any }) {
   return (
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">Account Instellingen</h2>
+        <h2 className="text-xl font-bold text-neutral-900 mb-6">Account Instellingen</h2>
         
         <div className="space-y-6">
           {/* Notifications */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Meldingen</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Meldingen</h3>
             <div className="space-y-4">
               <label className="flex items-center">
-                <input type="checkbox" className="rounded text-indigo-600" />
-                <span className="ml-3 text-gray-700">E-mailmeldingen</span>
+                <input type="checkbox" className="rounded text-brand-orange" />
+                <span className="ml-3 text-neutral-700">E-mailmeldingen</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="rounded text-indigo-600" />
-                <span className="ml-3 text-gray-700">Marketing e-mails</span>
+                <input type="checkbox" className="rounded text-brand-orange" />
+                <span className="ml-3 text-neutral-700">Marketing e-mails</span>
               </label>
               <label className="flex items-center">
-                <input type="checkbox" className="rounded text-indigo-600" />
-                <span className="ml-3 text-gray-700">Beveiligingswaarschuwingen</span>
+                <input type="checkbox" className="rounded text-brand-orange" />
+                <span className="ml-3 text-neutral-700">Beveiligingswaarschuwingen</span>
               </label>
             </div>
           </div>
 
           {/* Password Change */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Wachtwoord veranderen</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Wachtwoord veranderen</h3>
             <form onSubmit={handlePasswordChange} className="space-y-4">
               <div>
-                <label htmlFor="currentPassword" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="currentPassword" className="block text-sm font-medium text-neutral-700">
                   Huidig wachtwoord
                 </label>
                 <input
@@ -1392,12 +1392,12 @@ function SettingsSection({ session }: { session: any }) {
                   id="currentPassword"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="newPassword" className="block text-sm font-medium text-neutral-700">
                   Nieuw wachtwoord
                 </label>
                 <input
@@ -1405,12 +1405,12 @@ function SettingsSection({ session }: { session: any }) {
                   id="newPassword"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-neutral-700">
                   Bevestig nieuw wachtwoord
                 </label>
                 <input
@@ -1418,7 +1418,7 @@ function SettingsSection({ session }: { session: any }) {
                   id="confirmPassword"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-blue focus:border-brand-blue"
                   required
                 />
               </div>
@@ -1431,7 +1431,7 @@ function SettingsSection({ session }: { session: any }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
+                className="px-4 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors disabled:opacity-50"
               >
                 {loading ? 'Bijwerken...' : 'Wachtwoord bijwerken'}
               </button>
@@ -1440,11 +1440,11 @@ function SettingsSection({ session }: { session: any }) {
 
           {/* Privacy */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Privacy</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 mb-4">Privacy</h3>
             <div className="space-y-4">
               <button className="text-left">
-                <span className="text-gray-700">Download je gegevens</span>
-                <p className="text-sm text-gray-500">Krijg een kopie van je accountgegevens</p>
+                <span className="text-neutral-700">Download je gegevens</span>
+                <p className="text-sm text-neutral-500">Krijg een kopie van je accountgegevens</p>
               </button>
             </div>
           </div>
@@ -1455,7 +1455,7 @@ function SettingsSection({ session }: { session: any }) {
             <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
               Account Verwijderen
             </button>
-            <p className="text-sm text-gray-500 mt-2">Deze actie kan niet ongedaan worden gemaakt.</p>
+            <p className="text-sm text-neutral-500 mt-2">Deze actie kan niet ongedaan worden gemaakt.</p>
           </div>
         </div>
       </div>
@@ -1544,7 +1544,7 @@ function VacaturesSection({ session, customer, plan }: {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-orange"></div>
       </div>
     );
   }
@@ -1588,15 +1588,15 @@ function VacaturesSection({ session, customer, plan }: {
       <div className="bg-white rounded-lg shadow-sm p-6">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Vacature Beheer</h2>
-            <p className="text-gray-600 mt-1">
+            <h2 className="text-xl font-bold text-neutral-900">Vacature Beheer</h2>
+            <p className="text-neutral-600 mt-1">
               Beheer je vacatures en bereik potentiële kandidaten
             </p>
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
             disabled={!canCreateMore}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <IconPlus className="h-4 w-4" />
             <span>Nieuwe Vacature</span>
@@ -1604,8 +1604,8 @@ function VacaturesSection({ session, customer, plan }: {
         </div>
 
         {/* Plan Status */}
-        <div className="mt-4 p-4 bg-indigo-50 rounded-lg">
-          <p className="text-sm text-indigo-800">
+        <div className="mt-4 p-4 bg-brand-blue/10 rounded-lg">
+          <p className="text-sm text-brand-blue">
             <strong>{plan?.name || 'Basic'} Plan:</strong> {' '}
             {limit === -1 ? 'Onbeperkt aantal' : `${activeVacatures.length}/${limit}`} actieve vacatures
             {!canCreateMore && (
@@ -1620,8 +1620,8 @@ function VacaturesSection({ session, customer, plan }: {
       {/* Active Vacatures */}
       {activeVacatures.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Actieve Vacatures ({activeVacatures.length})</h3>
+          <div className="p-6 border-b border-neutral-200">
+            <h3 className="text-lg font-semibold text-neutral-900">Actieve Vacatures ({activeVacatures.length})</h3>
           </div>
           <div className="divide-y divide-gray-200">
             {activeVacatures.map((vacature) => (
@@ -1640,8 +1640,8 @@ function VacaturesSection({ session, customer, plan }: {
       {/* Inactive Vacatures */}
       {inactiveVacatures.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Inactieve Vacatures ({inactiveVacatures.length})</h3>
+          <div className="p-6 border-b border-neutral-200">
+            <h3 className="text-lg font-semibold text-neutral-900">Inactieve Vacatures ({inactiveVacatures.length})</h3>
           </div>
           <div className="divide-y divide-gray-200">
             {inactiveVacatures.map((vacature) => (
@@ -1660,13 +1660,13 @@ function VacaturesSection({ session, customer, plan }: {
       {/* Empty State */}
       {vacatures.length === 0 && (
         <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-          <IconBriefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Nog geen vacatures</h3>
-          <p className="text-gray-600 mb-6">Begin met het plaatsen van je eerste vacature om kandidaten te bereiken.</p>
+          <IconBriefcase className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+          <h3 className="text-lg font-medium text-neutral-900 mb-2">Nog geen vacatures</h3>
+          <p className="text-neutral-600 mb-6">Begin met het plaatsen van je eerste vacature om kandidaten te bereiken.</p>
           <button
             onClick={() => setShowCreateForm(true)}
             disabled={!canCreateMore}
-            className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
+            className="px-6 py-3 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors disabled:opacity-50"
           >
             Eerste Vacature Plaatsen
           </button>
@@ -1696,33 +1696,33 @@ function VacatureCard({
       <div className="flex justify-between items-start">
         <div className="flex-1">
           <div className="flex items-center space-x-3">
-            <h3 className="text-lg font-semibold text-gray-900">{vacature.title}</h3>
+            <h3 className="text-lg font-semibold text-neutral-900">{vacature.title}</h3>
             <span className={`px-2 py-1 text-xs rounded-full ${
               isActive 
                 ? 'bg-green-100 text-green-800' 
                 : isExpired 
                   ? 'bg-red-100 text-red-800'
-                  : 'bg-gray-100 text-gray-800'
+                  : 'bg-neutral-100 text-neutral-800'
             }`}>
               {isActive ? 'Actief' : isExpired ? 'Verlopen' : 'Inactief'}
             </span>
           </div>
           
           <div className="mt-2 space-y-1">
-            <p className="text-gray-600">{vacature.company_name} • {vacature.location}</p>
-            <div className="flex items-center space-x-4 text-sm text-gray-500">
+            <p className="text-neutral-600">{vacature.company_name} • {vacature.location}</p>
+            <div className="flex items-center space-x-4 text-sm text-neutral-500">
               <span>{vacature.employment_type}</span>
               <span>{vacature.location_type}</span>
               {vacature.experience_level && <span>{vacature.experience_level}</span>}
             </div>
             {(vacature.salary_min || vacature.salary_max) && (
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 €{vacature.salary_min ? vacature.salary_min.toLocaleString() : '?'} - 
                 €{vacature.salary_max ? vacature.salary_max.toLocaleString() : '?'} {vacature.salary_period}
               </p>
             )}
             {vacature.expires_at && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Verloopt: {new Date(vacature.expires_at).toLocaleDateString('nl-NL')}
               </p>
             )}
@@ -1732,7 +1732,7 @@ function VacatureCard({
         <div className="flex items-center space-x-2 ml-4">
           <button
             onClick={onEdit}
-            className="p-2 text-gray-400 hover:text-indigo-600 transition-colors"
+            className="p-2 text-neutral-400 hover:text-brand-orange transition-colors"
             title="Bewerken"
           >
             <IconEdit className="h-4 w-4" />
@@ -1740,7 +1740,7 @@ function VacatureCard({
           
           <button
             onClick={() => onToggleActive(vacature.id, vacature.is_active)}
-            className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+            className="p-2 text-neutral-400 hover:text-brand-blue transition-colors"
             title={vacature.is_active ? 'Deactiveren' : 'Activeren'}
           >
             {vacature.is_active ? <IconEyeOff className="h-4 w-4" /> : <IconEye className="h-4 w-4" />}
@@ -1748,7 +1748,7 @@ function VacatureCard({
           
           <button
             onClick={() => onDelete(vacature.id)}
-            className="p-2 text-gray-400 hover:text-red-600 transition-colors"
+            className="p-2 text-neutral-400 hover:text-red-600 transition-colors"
             title="Verwijderen"
           >
             <IconTrash className="h-4 w-4" />
@@ -1865,12 +1865,12 @@ function VacatureForm({
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-gray-900">
+        <h2 className="text-xl font-bold text-neutral-900">
           {vacature ? 'Vacature Bewerken' : 'Nieuwe Vacature Plaatsen'}
         </h2>
         <button
           onClick={onClose}
-          className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
+          className="p-2 text-neutral-400 hover:text-neutral-600 transition-colors"
           title="Sluiten"
         >
           <IconX className="h-5 w-5" />
@@ -1890,17 +1890,17 @@ function VacatureForm({
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Basic Information */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Basis Informatie</h3>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Basis Informatie</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Functietitel *
               </label>
               <input
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData({...formData, title: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="Senior React Developer"
                 required
                 maxLength={100}
@@ -1908,28 +1908,28 @@ function VacatureForm({
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Bedrijfsnaam *
               </label>
               <input
                 type="text"
                 value={formData.company_name}
                 onChange={(e) => setFormData({...formData, company_name: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="Jouw Bedrijf BV"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Locatie *
               </label>
               <input
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({...formData, location: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="Amsterdam, Nederland"
                 required
               />
@@ -1939,16 +1939,16 @@ function VacatureForm({
 
         {/* Job Details */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Functie Details</h3>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Functie Details</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Locatie Type
               </label>
               <select
                 value={formData.location_type}
                 onChange={(e) => setFormData({...formData, location_type: e.target.value as any})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 title="Selecteer locatie type"
               >
                 <option value="On-site">Op locatie</option>
@@ -1958,13 +1958,13 @@ function VacatureForm({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Dienstverband
               </label>
               <select
                 value={formData.employment_type}
                 onChange={(e) => setFormData({...formData, employment_type: e.target.value as any})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 title="Selecteer dienstverband"
               >
                 <option value="Full-time">Fulltime</option>
@@ -1976,13 +1976,13 @@ function VacatureForm({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Ervaring Level
               </label>
               <select
                 value={formData.experience_level}
                 onChange={(e) => setFormData({...formData, experience_level: e.target.value as any})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 title="Selecteer ervaring level"
               >
                 <option value="Entry Level">Starter</option>
@@ -1997,42 +1997,42 @@ function VacatureForm({
 
         {/* Salary Information */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Salaris Informatie</h3>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Salaris Informatie</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Minimum Salaris (€)
               </label>
               <input
                 type="number"
                 value={formData.salary_min}
                 onChange={(e) => setFormData({...formData, salary_min: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="3000"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Maximum Salaris (€)
               </label>
               <input
                 type="number"
                 value={formData.salary_max}
                 onChange={(e) => setFormData({...formData, salary_max: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="5000"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Salaris Periode
               </label>
               <select
                 value={formData.salary_period}
                 onChange={(e) => setFormData({...formData, salary_period: e.target.value as any})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 title="Selecteer salaris periode"
               >
                 <option value="per hour">Per uur</option>
@@ -2045,14 +2045,14 @@ function VacatureForm({
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 mb-2">
             Functiebeschrijving *
           </label>
           <textarea
             value={formData.description}
             onChange={(e) => setFormData({...formData, description: e.target.value})}
             rows={6}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
             placeholder="Beschrijf de functie, verantwoordelijkheden, en wat je zoekt in een kandidaat..."
             required
           />
@@ -2061,27 +2061,27 @@ function VacatureForm({
         {/* Requirements & Benefits */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Vereisten
             </label>
             <textarea
               value={formData.requirements}
               onChange={(e) => setFormData({...formData, requirements: e.target.value})}
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
               placeholder="- Minimaal 3 jaar ervaring met React&#10;- Kennis van TypeScript&#10;- Ervaring met API's"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Voordelen
             </label>
             <textarea
               value={formData.benefits}
               onChange={(e) => setFormData({...formData, benefits: e.target.value})}
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
               placeholder="- Flexibele werktijden&#10;- Remote werk mogelijk&#10;- Goede pensioenregeling"
             />
           </div>
@@ -2089,44 +2089,44 @@ function VacatureForm({
 
         {/* Application Information */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Sollicitatie Informatie</h3>
+          <h3 className="text-lg font-semibold text-neutral-900 mb-4">Sollicitatie Informatie</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Contact E-mail *
               </label>
               <input
                 type="email"
                 value={formData.application_email}
                 onChange={(e) => setFormData({...formData, application_email: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="hr@jouwbedrijf.nl"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Sollicitatie URL (optioneel)
               </label>
               <input
                 type="url"
                 value={formData.application_url}
                 onChange={(e) => setFormData({...formData, application_url: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 placeholder="https://jouwbedrijf.nl/carriere"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Vervaldatum (optioneel)
               </label>
               <input
                 type="date"
                 value={formData.expires_at}
                 onChange={(e) => setFormData({...formData, expires_at: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-brand-blue focus:border-brand-blue"
                 min={new Date().toISOString().split('T')[0]}
                 title="Selecteer vervaldatum"
               />
@@ -2135,11 +2135,11 @@ function VacatureForm({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+        <div className="flex justify-end space-x-4 pt-6 border-t border-neutral-200">
           <button
             type="button"
             onClick={onClose}
-            className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-6 py-2 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
             disabled={loading}
           >
             Annuleren
@@ -2147,7 +2147,7 @@ function VacatureForm({
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2 bg-brand-orange text-white rounded-lg hover:bg-brand-orange/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Opslaan...' : (vacature ? 'Bijwerken' : 'Publiceren')}
           </button>

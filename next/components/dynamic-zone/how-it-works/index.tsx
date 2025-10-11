@@ -29,10 +29,11 @@ export const HowItWorks = ({
 
         {steps &&
           steps.map(
-            (item: { title: string; description: string }, index: number) => (
+            (item: { title: string; description: string; screenshots?: any }, index: number) => (
               <Card
                 title={item.title}
                 description={item.description}
+                screenshot={item.screenshots}
                 index={index + 1}
                 key={'card' + index}
               />

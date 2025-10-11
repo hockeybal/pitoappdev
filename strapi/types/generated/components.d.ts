@@ -486,6 +486,9 @@ export interface SharedSteps extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.String;
+    screenshots: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     title: Schema.Attribute.String;
   };
 }

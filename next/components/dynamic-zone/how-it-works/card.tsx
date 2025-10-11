@@ -13,15 +13,18 @@ import React, { MouseEvent as ReactMouseEvent, useRef } from 'react';
 
 import Beam from '../../beam';
 import { CanvasRevealEffect } from '../../ui/canvas-reveal-effect';
+import { StrapiImage } from '../../ui/strapi-image';
 
 export const Card = ({
   title,
   description,
   index,
+  screenshot,
 }: {
   title: string;
   description: string;
   index: number;
+  screenshot?: any;
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -50,12 +53,30 @@ export const Card = ({
   });
 
   useMotionValueEvent(width, 'change', (latest) => {});
+  
+  // Fix wrong port 1338 to correct port 1337
+  const fixedScreenshotUrl = screenshot?.url 
+    ? screenshot.url.replace(':1338', ':1337')
+    : screenshot?.url;
+  
   return (
     <div
       ref={ref}
       className="grid grid-cols-1 md:grid-cols-4 max-w-4xl mx-auto py-20"
     >
-      <p className="text-9xl font-bold text-neutral-900 mt-8">{'0' + index}</p>
+      {fixedScreenshotUrl ? (
+        <div className="flex items-center justify-center mt-8">
+          <StrapiImage
+            src={fixedScreenshotUrl}
+            alt={screenshot.alternativeText || title}
+            width={200}
+            height={200}
+            className="w-full h-auto max-w-[200px] object-contain rounded-lg"
+          />
+        </div>
+      ) : (
+        <p className="text-9xl font-bold text-neutral-900 mt-8">{'0' + index}</p>
+      )}
       <motion.div
         className="h-px w-full hidden md:block bg-gradient-to-r from-neutral-800 to-neutral-600 rounded-full mt-16 relative overflow-hidden"
         style={{ width }}

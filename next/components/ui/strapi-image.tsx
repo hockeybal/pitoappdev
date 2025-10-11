@@ -12,6 +12,12 @@ export function getStrapiMedia(url: string | null) {
   const strapiURL = process.env.NEXT_PUBLIC_API_URL;
   if (url == null) return null;
   if (url.startsWith('data:')) return url;
+  
+  // Fix wrong port 1338 to correct port 1337
+  if (typeof url === 'string' && url.includes(':1338')) {
+    url = url.replace(':1338', ':1337');
+  }
+  
   if (url.startsWith('http') || url.startsWith('//')) return url;
   if (url.startsWith('/')) {
     if (!strapiURL && document?.location.host.endsWith('.strapidemo.com')) {

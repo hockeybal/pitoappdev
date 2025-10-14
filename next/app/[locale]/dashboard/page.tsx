@@ -4,7 +4,6 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { UserProfile, Vacature } from '@/types/types';
 // Using Tabler icons instead since they're already installed
 import { 
   IconUser, 
@@ -44,6 +43,40 @@ interface Customer {
   subscription_status?: string;
   subscription_start_date?: string;
   subscription_end_date?: string;
+}
+
+interface UserProfile {
+  username: string;
+  email: string;
+  kvk_number: string;
+  company_name: string;
+  street_address: string;
+  postal_code: string;
+  city: string;
+  country: string;
+}
+
+interface Vacature {
+  id: number;
+  title: string;
+  company_name: string;
+  location: string;
+  employment_type: string;
+  location_type: string;
+  experience_level?: string;
+  salary_min?: number;
+  salary_max?: number;
+  salary_period?: string;
+  is_active: boolean;
+  publishedAt?: string;
+  expires_at?: string;
+  description?: string;
+  requirements?: string;
+  nice_to_have?: string;
+  what_we_offer?: string;
+  benefits?: string;
+  application_email?: string;
+  application_url?: string;
 }
 
 type ActiveTab = 'overview' | 'profile' | 'subscription' | 'billing' | 'settings' | 'vacatures';

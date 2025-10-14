@@ -131,7 +131,7 @@ export default function DashboardPage() {
     } finally {
       setLoading(false);
     }
-  }, [session?.user?.id, session?.user]);
+  }, [session?.user]);
 
   useEffect(() => {
     if (session?.user?.jwt) {

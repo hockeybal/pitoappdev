@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
             <><strong className="text-neutral-900">Accountgegevens:</strong> Naam, e-mailadres, wachtwoord (versleuteld opgeslagen)</>,
             <><strong className="text-neutral-900">Bedrijfsgegevens:</strong> Bedrijfsnaam, KvK-nummer, BTW-nummer (indien van toepassing)</>,
             <><strong className="text-neutral-900">Betalingsgegevens:</strong> Factuuradres, betalingsmethode (verwerkt via Mollie)</>,
-            <><strong className="text-neutral-900">Gebruiksgegevens:</strong> Informatie over hoe u onze diensten gebruikt, inclusief IP-adres, browsertype, pagina's die u bezoekt</>,
+            <><strong className="text-neutral-900">Gebruiksgegevens:</strong> Informatie over hoe u onze diensten gebruikt, inclusief IP-adres, browsertype, pagina&apos;s die u bezoekt</>,
             <><strong className="text-neutral-900">Communicatiegegevens:</strong> Berichten die u ons stuurt via e-mail of contactformulieren</>,
           ]} />
         </>

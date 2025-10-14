@@ -41,11 +41,11 @@ export default function TermsOfServicePage() {
             In deze Voorwaarden worden de volgende termen gebruikt:
           </LegalParagraph>
           <LegalList items={[
-            <><strong className="text-neutral-900">"Pito App", "wij", "ons", "onze":</strong> Verwijst naar Pito App, de aanbieder van de diensten</>,
-            <><strong className="text-neutral-900">"Gebruiker", "u", "uw":</strong> De natuurlijke persoon of rechtspersoon die gebruik maakt van onze diensten</>,
-            <><strong className="text-neutral-900">"Diensten":</strong> Alle producten, software, en diensten die worden aangeboden door Pito App</>,
-            <><strong className="text-neutral-900">"Account":</strong> Het persoonlijke gebruikersaccount dat u aanmaakt om gebruik te maken van onze diensten</>,
-            <><strong className="text-neutral-900">"Content":</strong> Alle informatie, tekst, afbeeldingen, data, en andere materialen die via onze diensten toegankelijk zijn</>,
+            <><strong className="text-neutral-900">&quot;Pito App&quot;, &quot;wij&quot;, &quot;ons&quot;, &quot;onze&quot;:</strong> Verwijst naar Pito App, de aanbieder van de diensten</>,
+            <><strong className="text-neutral-900">&quot;Gebruiker&quot;, &quot;u&quot;, &quot;uw&quot;:</strong> De natuurlijke persoon of rechtspersoon die gebruik maakt van onze diensten</>,
+            <><strong className="text-neutral-900">&quot;Diensten&quot;:</strong> Alle producten, software, en diensten die worden aangeboden door Pito App</>,
+            <><strong className="text-neutral-900">&quot;Account&quot;:</strong> Het persoonlijke gebruikersaccount dat u aanmaakt om gebruik te maken van onze diensten</>,
+            <><strong className="text-neutral-900">&quot;Content&quot;:</strong> Alle informatie, tekst, afbeeldingen, data, en andere materialen die via onze diensten toegankelijk zijn</>,
           ]} />
         </>
       ),
@@ -228,7 +228,7 @@ export default function TermsOfServicePage() {
         <>
           <LegalParagraph>
             <strong className="text-neutral-900">Eigendom van Pito App</strong><br />
-            Alle intellectuele eigendomsrechten met betrekking tot onze diensten, inclusief maar niet beperkt tot software, design, logo's, tekst, afbeeldingen en code, zijn eigendom van of gelicentieerd aan Pito App.
+            Alle intellectuele eigendomsrechten met betrekking tot onze diensten, inclusief maar niet beperkt tot software, design, logo&apos;s, tekst, afbeeldingen en code, zijn eigendom van of gelicentieerd aan Pito App.
           </LegalParagraph>
           <LegalParagraph>
             <strong className="text-neutral-900">Uw content</strong><br />
@@ -278,7 +278,7 @@ export default function TermsOfServicePage() {
           </LegalParagraph>
           <LegalParagraph>
             <strong className="text-neutral-900">Uitsluiting garanties</strong><br />
-            Onze diensten worden geleverd "as is" en "as available". We geven geen garanties dat:
+            Onze diensten worden geleverd &quot;as is&quot; en &quot;as available&quot;. We geven geen garanties dat:
           </LegalParagraph>
           <LegalList items={[
             'De diensten ononderbroken of foutloos zijn',

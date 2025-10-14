@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { formatAmount } from '@/lib/shared/pro-rated-billing';
 
@@ -42,16 +42,7 @@ export function UpgradePreview({
   const [error, setError] = useState<string | null>(null);
   const [upgrading, setUpgrading] = useState(false);
 
-  // Laad upgrade preview wanneer plan IDs veranderen
-  useEffect(() => {
-    if (!session || currentPlanId === newPlanId) {
-      return;
-    }
-
-    loadUpgradePreview();
-  }, [currentPlanId, newPlanId, session]);
-
-  const loadUpgradePreview = async () => {
+  const loadUpgradePreview = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -70,7 +61,16 @@ export function UpgradePreview({
     } finally {
       setLoading(false);
     }
-  };
+  }, [newPlanId]);
+
+  // Laad upgrade preview wanneer plan IDs veranderen
+  useEffect(() => {
+    if (!session || currentPlanId === newPlanId) {
+      return;
+    }
+
+    loadUpgradePreview();
+  }, [currentPlanId, newPlanId, session, loadUpgradePreview]);
 
   const handleUpgrade = async () => {
     if (!calculation || !session) return;

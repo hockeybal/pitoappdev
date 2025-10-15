@@ -5,4 +5,5 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS') || ['tobemodified1', 'tobemodified2'],
   },
+  proxy: { koa: true },
 });

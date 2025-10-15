@@ -97,9 +97,3 @@ declare module '@mollie/api-client' {
   function createMollieClient(options: MollieOptions): MollieClient;
   export { createMollieClient };
 }
-    payments: {
-      create(params: any): Promise<any>;
-      get(id: string): Promise<any>;
-    };
-  };
-};

@@ -231,6 +231,7 @@ export default function DashboardPage() {
               <button 
                 className="p-2 text-neutral-500 hover:text-brand-blue transition-colors"
                 title="Meldingen"
+                aria-label="Meldingen bekijken"
               >
                 <IconBell className="h-6 w-6" />
               </button>
@@ -243,6 +244,7 @@ export default function DashboardPage() {
                   onClick={handleSignOut}
                   className="p-2 text-neutral-500 hover:text-red-600 transition-colors"
                   title="Uitloggen"
+                  aria-label="Uitloggen"
                 >
                   <IconLogout className="h-6 w-6" />
                 </button>
@@ -1767,6 +1769,7 @@ function VacatureCard({
             onClick={onEdit}
             className="p-2 text-neutral-400 hover:text-brand-orange transition-colors"
             title="Bewerken"
+            aria-label="Vacature bewerken"
           >
             <IconEdit className="h-4 w-4" />
           </button>
@@ -1775,6 +1778,7 @@ function VacatureCard({
             onClick={() => onToggleActive(vacature.id, vacature.is_active)}
             className="p-2 text-neutral-400 hover:text-brand-blue transition-colors"
             title={vacature.is_active ? 'Deactiveren' : 'Activeren'}
+            aria-label={vacature.is_active ? 'Vacature deactiveren' : 'Vacature activeren'}
           >
             {vacature.is_active ? <IconEyeOff className="h-4 w-4" /> : <IconEye className="h-4 w-4" />}
           </button>
@@ -1783,6 +1787,7 @@ function VacatureCard({
             onClick={() => onDelete(vacature.id)}
             className="p-2 text-neutral-400 hover:text-red-600 transition-colors"
             title="Verwijderen"
+            aria-label="Vacature verwijderen"
           >
             <IconTrash className="h-4 w-4" />
           </button>

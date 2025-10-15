@@ -2,7 +2,6 @@
 
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, extend, useThree } from '@react-three/fiber';
-import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import { Color, Fog, PerspectiveCamera, Scene, Vector3 } from 'three';
 import ThreeGlobe from 'three-globe';
@@ -369,7 +368,7 @@ export function WebGLRendererConfig() {
   return null;
 }
 
-export function World(props: WorldProps) {
+export function GlobeWorld(props: WorldProps) {
   const { globeConfig } = props;
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);

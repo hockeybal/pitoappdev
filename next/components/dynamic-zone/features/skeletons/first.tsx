@@ -15,7 +15,7 @@ import {
 } from '@/components/icons/illustrations';
 
 const World = dynamic(
-  () => import('@/components/ui/globe').then((m) => m.World),
+  () => import('@/components/ui/globe').then((m) => m.GlobeWorld),
   {
     ssr: false,
   }

@@ -30,46 +30,46 @@ export function FormNextToSection({
       title: 'twitter',
       href: 'https://twitter.com/strapijs',
       icon: (
-        <IconBrandX className="h-5 w-5 text-muted  hover:text-neutral-100" />
+        <IconBrandX className="h-6 w-6 text-white/70 hover:text-brand-orange transition-colors duration-200" />
       ),
     },
     {
       title: 'github',
       href: 'https://github.com/strapi',
       icon: (
-        <IconBrandGithub className="h-5 w-5 text-muted  hover:text-neutral-100" />
+        <IconBrandGithub className="h-6 w-6 text-white/70 hover:text-brand-orange transition-colors duration-200" />
       ),
     },
     {
       title: 'linkedin',
       href: 'https://linkedin.com/strapi',
       icon: (
-        <IconBrandLinkedin className="h-5 w-5 text-muted  hover:text-neutral-100" />
+        <IconBrandLinkedin className="h-6 w-6 text-white/70 hover:text-brand-orange transition-colors duration-200" />
       ),
     },
   ];
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden">
-      <div className="flex relative z-20 items-center w-full justify-center px-4 py-4 lg:py-40 sm:px-6 lg:flex-none lg:px-20  xl:px-24">
+    <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2 relative overflow-hidden bg-white">
+      <div className="flex relative z-20 items-center w-full justify-center px-4 py-8 lg:py-40 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-gradient-to-br from-brand-blue to-brand-light-blue">
         <div className="mx-auto w-full max-w-md">
           <div>
-            <h1 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-white">
+            <h1 className="mt-8 text-3xl md:text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-lg">
               {heading}
             </h1>
-            <p className="mt-4 text-muted   text-sm max-w-sm">{sub_heading}</p>
+            <p className="mt-4 text-white/90 text-base max-w-sm leading-relaxed">{sub_heading}</p>
           </div>
 
           <div className="py-10">
             <div>
-              <form className="space-y-4">
+              <form className="space-y-5">
                 {form &&
                   form?.inputs?.map((input: any, index: number) => (
                     <div key={`form-input-${index}`}>
                       {input.type !== 'submit' && (
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium leading-6 text-neutral-400 "
+                          className="block text-sm font-semibold leading-6 text-white mb-2"
                         >
                           {input.name}
                         </label>
@@ -81,11 +81,11 @@ export function FormNextToSection({
                             rows={5}
                             id="message"
                             placeholder={input.placeholder}
-                            className="block w-full bg-neutral-900  px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
+                            className="block w-full bg-white/10 backdrop-blur-sm px-4 rounded-lg border-2 border-white/20 py-3 shadow-lg text-white placeholder:text-white/50 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange focus:outline-none sm:text-base transition-all duration-300"
                           />
                         ) : input.type === 'submit' ? (
                           <div>
-                            <Button className="w-full mt-6">
+                            <Button variant="primary" className="w-full mt-6">
                               {input.name}
                             </Button>
                           </div>
@@ -94,7 +94,7 @@ export function FormNextToSection({
                             id="name"
                             type={input.type}
                             placeholder={input.placeholder}
-                            className="block w-full bg-neutral-900 px-4 rounded-md border-0 py-1.5  shadow-aceternity text-neutral-100 placeholder:text-gray-400 focus:ring-2 focus:ring-neutral-400 focus:outline-none sm:text-sm sm:leading-6 "
+                            className="block w-full bg-white/10 backdrop-blur-sm px-4 rounded-lg border-2 border-white/20 py-3 shadow-lg text-white placeholder:text-white/50 focus:ring-2 focus:ring-brand-orange focus:border-brand-orange focus:outline-none sm:text-base transition-all duration-300"
                           />
                         )}
                       </div>
@@ -103,32 +103,34 @@ export function FormNextToSection({
               </form>
             </div>
           </div>
-          <div className="flex items-center justify-center space-x-4 py-4">
+          <div className="flex items-center justify-center space-x-6 py-4">
             {socials.map((social) => (
-              <Link href={social.href} target="_blank" key={social.title}>
+              <Link href={social.href} target="_blank" key={social.title} className="hover:scale-110 transition-transform duration-200">
                 {social.icon}
               </Link>
             ))}
           </div>
         </div>
       </div>
-      <div className="relative w-full z-20 hidden md:flex border-l border-charcoal overflow-hidden bg-neutral-900 items-center justify-center">
-        <StarBackground />
-        <ShootingStars />
-        <div className="max-w-sm mx-auto">
+      <div className="relative w-full z-20 hidden md:flex border-l-2 border-brand-blue/20 overflow-hidden bg-gradient-to-br from-white to-neutral-50 items-center justify-center p-12">
+        <div className="absolute inset-0 opacity-5">
+          <StarBackground />
+          <ShootingStars />
+        </div>
+        <div className="max-w-sm mx-auto relative z-10">
           <div className="flex flex-row items-center justify-center mb-10 w-full">
             <AnimatedTooltip items={section.users} />
           </div>
           <p
             className={
-              'font-semibold text-xl text-center  text-muted text-balance'
+              'font-bold text-2xl text-center text-neutral-900 text-balance'
             }
           >
             {section.heading}
           </p>
           <p
             className={
-              'font-normal text-base text-center text-neutral-500  mt-8 text-balance'
+              'font-normal text-base text-center text-neutral-600 mt-6 text-balance leading-relaxed'
             }
           >
             {section.sub_heading}

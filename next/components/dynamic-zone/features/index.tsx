@@ -44,14 +44,14 @@ export const Features = ({
 }) => {
   return (
     <GradientContainer className="md:my-20">
-      <Container className="py-20 max-w-7xl mx-auto  relative z-40">
+      <Container className="py-24 md:py-32 max-w-7xl mx-auto relative z-40">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconRocket className="h-6 w-6 text-brand-orange" />
+          <IconRocket className="h-7 w-7 text-brand-orange" />
         </FeatureIconContainer>
-        <Heading className="pt-4">{heading}</Heading>
-        <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
+        <Heading className="pt-6">{heading}</Heading>
+        <Subheading className="max-w-3xl mx-auto mt-4">{sub_heading}</Subheading>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-12 md:py-16">
           {globe_card && (
             <Card
               className={`md:col-span-${convertWordToNumber(globe_card?.span) || '2'}`}

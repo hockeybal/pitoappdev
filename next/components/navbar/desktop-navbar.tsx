@@ -50,14 +50,20 @@ export const DesktopNavbar = ({
   return (
     <motion.div
       className={cn(
-        'w-full flex relative justify-between px-4 py-3 rounded-md  transition duration-200 bg-transparent mx-auto'
+        'w-full flex relative justify-between px-6 py-3 rounded-full transition duration-200 bg-transparent mx-auto'
       )}
       animate={{
         width: showBackground ? '80%' : '100%',
-        background: showBackground ? 'rgba(255, 255, 255, 0.8)' : 'transparent',
+        background: showBackground ? 'rgba(255, 255, 255, 0.85)' : 'transparent',
       }}
       transition={{
         duration: 0.4,
+        ease: 'easeInOut',
+      }}
+      style={{
+        boxShadow: showBackground
+          ? '0 8px 32px rgba(12, 111, 249, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04)'
+          : 'none',
       }}
     >
       <AnimatePresence>
@@ -67,9 +73,10 @@ export const DesktopNavbar = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              duration: 1,
+              duration: 0.6,
+              ease: 'easeOut',
             }}
-            className="absolute inset-0 h-full w-full bg-white/80 backdrop-blur-md pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full border border-neutral-200"
+            className="absolute inset-0 h-full w-full bg-white/85 backdrop-blur-lg pointer-events-none [mask-image:linear-gradient(to_bottom,white,transparent,white)] rounded-full border border-brand-blue/10"
           />
         )}
       </AnimatePresence>
@@ -88,8 +95,6 @@ export const DesktopNavbar = ({
         </div>
       </div>
       <div className="flex space-x-2 items-center">
-        <LocaleSwitcher currentLocale={locale} />
-
         {rightNavbarItems.map((item, index) => (
           <Button
             key={item.text}

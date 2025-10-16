@@ -22,18 +22,18 @@ export const Testimonials = ({
   return (
     <div className="relative">
       <AmbientColor />
-      <div className="pb-20">
+      <div className="pb-20 pt-24 md:pt-32">
         <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <TbLocationBolt className="h-6 w-6 text-brand-orange" />
+          <TbLocationBolt className="h-7 w-7 text-brand-orange" />
         </FeatureIconContainer>
-        <Heading className="pt-4">{heading}</Heading>
-        <Subheading>{sub_heading}</Subheading>
+        <Heading className="pt-6">{heading}</Heading>
+        <Subheading className="mt-4">{sub_heading}</Subheading>
       </div>
 
       {testimonials && (
         <div className="relative md:py-20 pb-20">
           <TestimonialsSlider testimonials={testimonials} />
-          <div className="h-full w-full mt-20 bg-white ">
+          <div className="h-full w-full mt-20 bg-white py-12">
             <TestimonialsMarquee testimonials={testimonials} />
           </div>
         </div>

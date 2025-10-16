@@ -48,7 +48,7 @@ export function LocaleSwitcher({ currentLocale }: { currentLocale: string }) {
                   : ''
               )}
             >
-              {locale}
+              {locale.toUpperCase()}
             </div>
           </Link>
         ))}

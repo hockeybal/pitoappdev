@@ -119,10 +119,10 @@ export const TestimonialsSlider = ({ testimonials }: { testimonials: any }) => {
               {slicedTestimonials.map((item: any, index: number) => (
                 <button
                   className={cn(
-                    `px-2 py-1 rounded-full m-1.5 text-xs border border-transparent text-neutral-300 transition duration-150 ease-in-out [background:linear-gradient(theme(colors.neutral.900),_theme(colors.neutral.900))_padding-box,_conic-gradient(theme(colors.neutral.400),_theme(colors.neutral.700)_25%,_theme(colors.neutral.700)_75%,_theme(colors.neutral.400)_100%)_border-box] relative before:absolute before:inset-0 before:bg-neutral-800/30 before:rounded-full before:pointer-events-none ${
+                    `px-4 py-2 rounded-full m-1.5 text-xs border transition-all duration-300 ease-in-out relative ${
                       active === index
-                        ? 'border-secondary/50'
-                        : 'border-transparent opacity-70'
+                        ? 'bg-gradient-to-r from-brand-orange to-[#ff9a56] border-brand-orange text-white shadow-[0_4px_14px_rgba(255,126,29,0.4)] scale-105'
+                        : 'bg-white border-neutral-200 text-neutral-700 hover:border-brand-blue/30 hover:shadow-md'
                     }`
                   )}
                   key={index}
@@ -131,15 +131,15 @@ export const TestimonialsSlider = ({ testimonials }: { testimonials: any }) => {
                     setAutorotate(false);
                   }}
                 >
-                  <span className="relative">
-                    <span className="text-neutral-50 font-bold">
-                      {item.user.firstname + item.user.lastname}
+                  <span className="relative font-medium">
+                    <span className={active === index ? 'text-white' : 'text-neutral-900'}>
+                      {item.user.firstname} {item.user.lastname}
                     </span>{' '}
                     <br className="block sm:hidden" />
-                    <span className="text-neutral-600 hidden sm:inline-block">
+                    <span className="text-neutral-500 hidden sm:inline-block">
                       -
                     </span>{' '}
-                    <span className="hidden sm:inline-block">
+                    <span className={cn('hidden sm:inline-block', active === index ? 'text-white/90' : 'text-neutral-600')}>
                       {item.user.job}
                     </span>
                   </span>

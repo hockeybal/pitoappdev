@@ -11,8 +11,19 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.pito.app',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pito.app',
+        pathname: '/uploads/**',
+      },
       { 
-        hostname: process.env.IMAGE_HOSTNAME || 'localhost' 
+        hostname: process.env.IMAGE_HOSTNAME || 'localhost',
+        pathname: '/uploads/**',
       }
     ],
   },

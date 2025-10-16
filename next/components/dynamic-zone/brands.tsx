@@ -44,11 +44,11 @@ export const Brands = ({
   }, [activeLogoSet]); // Depend on activeLogoSet to trigger flip every time it changes
 
   return (
-    <div className="relative z-20 py-10 md:py-40">
-      <Heading className="pt-4">{heading}</Heading>
-      <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
+    <div className="relative z-20 py-16 md:py-32 px-4">
+      <Heading className="pt-6">{heading}</Heading>
+      <Subheading className="max-w-3xl mx-auto mt-4">{sub_heading}</Subheading>
 
-      <div className="flex gap-10 flex-wrap justify-center md:gap-40 relative h-full w-full mt-20">
+      <div className="flex gap-12 flex-wrap justify-center md:gap-20 relative h-full w-full mt-16 max-w-6xl mx-auto">
         <AnimatePresence mode="popLayout">
           {activeLogoSet.map((logo, idx) => (
             <motion.div
@@ -73,16 +73,18 @@ export const Brands = ({
                 ease: [0.4, 0, 0.2, 1],
               }}
               key={logo.title || `logo-${idx}`}
-              className="relative"
+              className="relative group"
             >
-              <StrapiImage
-                src={logo.image?.url}
-                alt={logo.image.alternativeText}
-                width={400}
-                height={400}
-                className="md:h-20 md:w-60 h-10 w-40 object-contain filter"
-                draggable={false}
-              />
+              <div className="p-6 rounded-2xl bg-white border border-neutral-200 hover:border-brand-blue/30 hover:shadow-[0_12px_32px_rgba(12,111,249,0.15)] transition-all duration-300 hover:-translate-y-1">
+                <StrapiImage
+                  src={logo.image?.url}
+                  alt={logo.image.alternativeText}
+                  width={400}
+                  height={400}
+                  className="md:h-16 md:w-48 h-10 w-32 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  draggable={false}
+                />
+              </div>
             </motion.div>
           ))}
         </AnimatePresence>

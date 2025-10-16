@@ -12,7 +12,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        'p-8 rounded-3xl border border-neutral-200 bg-white shadow-sm group',
+        'p-8 rounded-3xl border border-neutral-200 bg-white shadow-md group transition-all duration-300 hover:shadow-[0_12px_32px_rgba(12,111,249,0.15)] hover:border-brand-blue/30 hover:-translate-y-1',
         className
       )}
     >
@@ -29,7 +29,7 @@ export const CardTitle = ({
   className?: string;
 }) => {
   return (
-    <h3 className={cn('text-lg font-semibold text-neutral-900 py-2', className)}>
+    <h3 className={cn('text-xl font-bold text-neutral-900 py-2 group-hover:text-brand-blue transition-colors duration-300', className)}>
       {children}
     </h3>
   );
@@ -44,7 +44,7 @@ export const CardDescription = ({
 }) => {
   return (
     <p
-      className={cn('text-sm font-normal text-neutral-600 max-w-sm', className)}
+      className={cn('text-base font-normal text-neutral-600 max-w-sm leading-relaxed', className)}
     >
       {children}
     </p>

@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_dynamic_zone_contact_sidebars",
+  "info": {
+    "displayName": "Contact Sidebar",
+    "description": "Sliding contact sidebar with team members and contact options",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true,
+      "default": "Service & contact"
+    },
+    "description": {
+      "type": "text"
+    },
+    "team_members": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "opening_hours": {
+      "type": "string"
+    },
+    "contact_methods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.contact-method"
+    },
+    "cta_button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.button"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

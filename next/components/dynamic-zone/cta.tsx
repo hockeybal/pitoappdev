@@ -22,16 +22,16 @@ export const CTA = ({
   return (
     <div className="relative py-40">
       <AmbientColor />
-      <Container className="flex flex-col md:flex-row justify-between items-center w-full px-8">
-        <div className="flex flex-col">
-          <motion.h2 className="text-neutral-900 text-xl text-center md:text-left md:text-3xl font-bold mx-auto md:mx-0 max-w-xl ">
+      <Container className="flex flex-col items-center w-full px-8">
+        <div className="flex flex-col items-center text-center max-w-2xl">
+          <motion.h2 className="text-neutral-900 text-xl md:text-3xl font-bold">
             {heading}
           </motion.h2>
-          <p className="max-w-md mt-8 text-center md:text-left text-sm md:text-base mx-auto md:mx-0 text-neutral-600">
+          <p className="max-w-md mt-8 text-sm md:text-base text-neutral-600">
             {sub_heading}
           </p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
           {CTAs &&
             CTAs.map((cta, index) => (
               <Button

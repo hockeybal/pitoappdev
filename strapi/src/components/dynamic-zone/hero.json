@@ -27,6 +27,11 @@
       "type": "component",
       "component": "shared.button",
       "repeatable": true
+    },
+    "icons": {
+      "type": "component",
+      "component": "shared.icon-text",
+      "repeatable": true
     }
   }
 }

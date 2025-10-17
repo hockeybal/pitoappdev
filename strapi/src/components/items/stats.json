@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_items_stats",
+  "info": {
+    "displayName": "stats",
+    "icon": "chartPie"
+  },
+  "options": {},
+  "attributes": {
+    "percentage": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

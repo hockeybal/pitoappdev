@@ -61,6 +61,21 @@ export interface CardsSocialMediaCard extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneBerijkImpact extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_berijk_impacts';
+  info: {
+    displayName: 'berijk_impact';
+    icon: 'bold';
+  };
+  attributes: {
+    bottom_text: Schema.Attribute.Text;
+    CTA: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    locations: Schema.Attribute.Component<'items.locations', true>;
+    stats: Schema.Attribute.Component<'items.stats', true>;
+  };
+}
+
 export interface DynamicZoneBrands extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_brands';
   info: {
@@ -72,6 +87,26 @@ export interface DynamicZoneBrands extends Struct.ComponentSchema {
     heading: Schema.Attribute.String;
     logos: Schema.Attribute.Relation<'oneToMany', 'api::logo.logo'>;
     sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneContactSidebar extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_contact_sidebars';
+  info: {
+    description: 'Sliding contact sidebar with team members and contact options';
+    displayName: 'Contact Sidebar';
+    icon: 'phone';
+  };
+  attributes: {
+    contact_methods: Schema.Attribute.Component<'items.contact-method', true>;
+    cta_button: Schema.Attribute.Component<'shared.button', false>;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Service & contact'>;
+    opening_hours: Schema.Attribute.String;
+    team_members: Schema.Attribute.Media<'images', true>;
   };
 }
 
@@ -151,6 +186,7 @@ export interface DynamicZoneHero extends Struct.ComponentSchema {
   attributes: {
     CTAs: Schema.Attribute.Component<'shared.button', true>;
     heading: Schema.Attribute.String;
+    icons: Schema.Attribute.Component<'shared.icon-text', true>;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     sub_heading: Schema.Attribute.String;
   };
@@ -274,6 +310,25 @@ export interface GlobalNavbar extends Struct.ComponentSchema {
   };
 }
 
+export interface ItemsContactMethod extends Struct.ComponentSchema {
+  collectionName: 'components_items_contact_methods';
+  info: {
+    description: 'Individual contact method item';
+    displayName: 'Contact Method';
+    icon: 'envelope';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    icon_name: Schema.Attribute.Enumeration<
+      ['faq', 'email', 'whatsapp', 'phone']
+    > &
+      Schema.Attribute.DefaultTo<'email'>;
+    link: Schema.Attribute.String;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ItemsGraphCardTopItems extends Struct.ComponentSchema {
   collectionName: 'components_items_graph_card_top_items';
   info: {
@@ -339,6 +394,20 @@ export interface ItemsLeftNavbarItems extends Struct.ComponentSchema {
   };
 }
 
+export interface ItemsLocations extends Struct.ComponentSchema {
+  collectionName: 'components_items_locations';
+  info: {
+    displayName: 'locations';
+    icon: 'arrowDown';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    households: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface ItemsRayItems extends Struct.ComponentSchema {
   collectionName: 'components_items_ray_items';
   info: {
@@ -350,6 +419,18 @@ export interface ItemsRayItems extends Struct.ComponentSchema {
     item_1: Schema.Attribute.String;
     item_2: Schema.Attribute.String;
     item_3: Schema.Attribute.String;
+  };
+}
+
+export interface ItemsStats extends Struct.ComponentSchema {
+  collectionName: 'components_items_stats';
+  info: {
+    displayName: 'stats';
+    icon: 'chartPie';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    percentage: Schema.Attribute.String;
   };
 }
 
@@ -373,6 +454,26 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedContactSidebar extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_sidebars';
+  info: {
+    description: 'Sliding contact sidebar with team members and contact options';
+    displayName: 'Contact Sidebar';
+    icon: 'phone';
+  };
+  attributes: {
+    contact_methods: Schema.Attribute.Component<'items.contact-method', true>;
+    cta_button: Schema.Attribute.Component<'shared.button', false>;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Service & contact'>;
+    opening_hours: Schema.Attribute.String;
+    team_members: Schema.Attribute.Media<'images', true>;
+  };
+}
+
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -382,6 +483,18 @@ export interface SharedForm extends Struct.ComponentSchema {
   };
   attributes: {
     inputs: Schema.Attribute.Component<'items.input', true>;
+  };
+}
+
+export interface SharedIconText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_icon_texts';
+  info: {
+    displayName: 'icon_text';
+    icon: 'cloud';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text: Schema.Attribute.String;
   };
 }
 
@@ -516,7 +629,9 @@ declare module '@strapi/strapi' {
       'cards.graph-card': CardsGraphCard;
       'cards.ray-card': CardsRayCard;
       'cards.social-media-card': CardsSocialMediaCard;
+      'dynamic-zone.berijk-impact': DynamicZoneBerijkImpact;
       'dynamic-zone.brands': DynamicZoneBrands;
+      'dynamic-zone.contact-sidebar': DynamicZoneContactSidebar;
       'dynamic-zone.cta': DynamicZoneCta;
       'dynamic-zone.faq': DynamicZoneFaq;
       'dynamic-zone.features': DynamicZoneFeatures;
@@ -530,12 +645,17 @@ declare module '@strapi/strapi' {
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;
+      'items.contact-method': ItemsContactMethod;
       'items.graph-card-top-items': ItemsGraphCardTopItems;
       'items.input': ItemsInput;
       'items.left-navbar-items': ItemsLeftNavbarItems;
+      'items.locations': ItemsLocations;
       'items.ray-items': ItemsRayItems;
+      'items.stats': ItemsStats;
       'shared.button': SharedButton;
+      'shared.contact-sidebar': SharedContactSidebar;
       'shared.form': SharedForm;
+      'shared.icon-text': SharedIconText;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
       'shared.perks': SharedPerks;

@@ -46,6 +46,12 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.related-articles': dynamic(() =>
     import('./related-articles').then((mod) => mod.RelatedArticles)
   ),
+  'dynamic-zone.berijk-impact': dynamic(() =>
+    import('./berijk-impact').then((mod) => mod.BerijkImpact)
+  ),
+  'dynamic-zone.contact-sidebar': dynamic(() =>
+    import('../contact-sidebar').then((mod) => mod.ContactSidebar)
+  ),
 };
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {

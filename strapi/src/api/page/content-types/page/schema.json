@@ -55,7 +55,8 @@
         "dynamic-zone.form-next-to-section",
         "dynamic-zone.faq",
         "dynamic-zone.berijk-impact",
-        "dynamic-zone.contact-sidebar"
+        "dynamic-zone.contact-sidebar",
+        "dynamic-zone.signup-form"
       ]
     }
   }

@@ -52,6 +52,9 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.contact-sidebar': dynamic(() =>
     import('../contact-sidebar').then((mod) => mod.ContactSidebar)
   ),
+  'dynamic-zone.signup-form': dynamic(() =>
+    import('./signup-form').then((mod) => mod.SignupForm)
+  ),
 };
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {

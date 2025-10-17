@@ -261,6 +261,41 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneSignupForm extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_signup_forms';
+  info: {
+    description: 'Configureerbaar inschrijfformulier met Pipedrive integratie';
+    displayName: 'Signup Form';
+    icon: 'envelop';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['white', 'gray', 'gradient']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
+    buttonText: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Verstuur'>;
+    formType: Schema.Attribute.Enumeration<['zakelijk', 'particulier']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'particulier'>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Schrijf je in'>;
+    pipedriveEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    privacyText: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Door dit formulier te verzenden ga je akkoord met onze privacyverklaring.'>;
+    showCompanyField: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    showMessageField: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    showPhoneField: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    sub_heading: Schema.Attribute.Text;
+    successMessage: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Bedankt voor je inschrijving! We nemen zo spoedig mogelijk contact met je op.'>;
+  };
+}
+
 export interface DynamicZoneTestimonials extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_testimonials';
   info: {
@@ -642,6 +677,7 @@ declare module '@strapi/strapi' {
       'dynamic-zone.pricing': DynamicZonePricing;
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
+      'dynamic-zone.signup-form': DynamicZoneSignupForm;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;

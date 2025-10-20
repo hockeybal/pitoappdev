@@ -467,7 +467,11 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         };
       }>;
     dynamic_zone: Schema.Attribute.DynamicZone<
-      ['dynamic-zone.related-articles', 'dynamic-zone.cta']
+      [
+        'dynamic-zone.related-articles',
+        'dynamic-zone.cta',
+        'dynamic-zone.social-proof',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -544,6 +548,7 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
         'dynamic-zone.faq',
         'dynamic-zone.cta',
         'dynamic-zone.brands',
+        'dynamic-zone.social-proof',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -895,6 +900,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.berijk-impact',
         'dynamic-zone.contact-sidebar',
         'dynamic-zone.signup-form',
+        'dynamic-zone.social-proof',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{

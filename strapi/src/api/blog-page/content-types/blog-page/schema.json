@@ -56,7 +56,8 @@
         "dynamic-zone.features",
         "dynamic-zone.faq",
         "dynamic-zone.cta",
-        "dynamic-zone.brands"
+        "dynamic-zone.brands",
+        "dynamic-zone.social-proof"
       ],
       "pluginOptions": {
         "i18n": {

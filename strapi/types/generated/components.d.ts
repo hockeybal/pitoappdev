@@ -209,14 +209,25 @@ export interface DynamicZoneHowItWorks extends Struct.ComponentSchema {
 export interface DynamicZoneLaunches extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_launches';
   info: {
-    description: '';
-    displayName: 'Launches';
-    icon: 'rocket';
+    description: 'iPhone mockups section with up to 4 screenshots';
+    displayName: 'App Mockups';
+    icon: 'phone';
   };
   attributes: {
-    heading: Schema.Attribute.String;
-    launches: Schema.Attribute.Component<'shared.launches', true>;
-    sub_heading: Schema.Attribute.String;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Zo ziet jouw plek in de app eruit'>;
+    mockups: Schema.Attribute.Component<'shared.iphone-mockup', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 1;
+        },
+        number
+      >;
+    sub_heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Hier wordt jouw bedrijf zichtbaar met PITO Partner'>;
   };
 }
 
@@ -293,6 +304,28 @@ export interface DynamicZoneSignupForm extends Struct.ComponentSchema {
     sub_heading: Schema.Attribute.Text;
     successMessage: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'Bedankt voor je inschrijving! We nemen zo spoedig mogelijk contact met je op.'>;
+  };
+}
+
+export interface DynamicZoneSocialProof extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_social_proofs';
+  info: {
+    description: 'Een strook met statistieken om social proof te tonen';
+    displayName: 'Social Proof';
+    icon: 'chartLine';
+  };
+  attributes: {
+    heading: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Sluit je aan bij vele anderen'>;
+    stats: Schema.Attribute.Component<'items.stat-item', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+        },
+        number
+      >;
+    sub_heading: Schema.Attribute.String;
   };
 }
 
@@ -457,6 +490,20 @@ export interface ItemsRayItems extends Struct.ComponentSchema {
   };
 }
 
+export interface ItemsStatItem extends Struct.ComponentSchema {
+  collectionName: 'components_items_stat_items';
+  info: {
+    description: 'Een enkel statistiek item voor social proof';
+    displayName: 'Stat Item';
+    icon: 'chartLine';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ItemsStats extends Struct.ComponentSchema {
   collectionName: 'components_items_stats';
   info: {
@@ -530,6 +577,20 @@ export interface SharedIconText extends Struct.ComponentSchema {
   attributes: {
     icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     text: Schema.Attribute.String;
+  };
+}
+
+export interface SharedIphoneMockup extends Struct.ComponentSchema {
+  collectionName: 'components_shared_iphone_mockups';
+  info: {
+    description: 'Single iPhone mockup with screenshot, title and description';
+    displayName: 'iPhone Mockup';
+    icon: 'phone';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    screenshot: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -678,6 +739,7 @@ declare module '@strapi/strapi' {
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
       'dynamic-zone.signup-form': DynamicZoneSignupForm;
+      'dynamic-zone.social-proof': DynamicZoneSocialProof;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;
@@ -687,11 +749,13 @@ declare module '@strapi/strapi' {
       'items.left-navbar-items': ItemsLeftNavbarItems;
       'items.locations': ItemsLocations;
       'items.ray-items': ItemsRayItems;
+      'items.stat-item': ItemsStatItem;
       'items.stats': ItemsStats;
       'shared.button': SharedButton;
       'shared.contact-sidebar': SharedContactSidebar;
       'shared.form': SharedForm;
       'shared.icon-text': SharedIconText;
+      'shared.iphone-mockup': SharedIphoneMockup;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
       'shared.perks': SharedPerks;

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_dynamic_zone_social_proofs",
+  "info": {
+    "displayName": "Social Proof",
+    "icon": "chartLine",
+    "description": "Een strook met statistieken om social proof te tonen"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Sluit je aan bij vele anderen"
+    },
+    "sub_heading": {
+      "type": "string"
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.stat-item",
+      "max": 4,
+      "required": true
+    }
+  }
+}

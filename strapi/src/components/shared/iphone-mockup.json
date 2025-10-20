@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_iphone_mockups",
+  "info": {
+    "displayName": "iPhone Mockup",
+    "icon": "phone",
+    "description": "Single iPhone mockup with screenshot, title and description"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "screenshot": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

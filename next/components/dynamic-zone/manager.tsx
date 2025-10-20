@@ -55,6 +55,9 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.signup-form': dynamic(() =>
     import('./signup-form').then((mod) => mod.SignupForm)
   ),
+  'dynamic-zone.social-proof': dynamic(() =>
+    import('./social-proof').then((mod) => mod.SocialProof)
+  ),
 };
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {

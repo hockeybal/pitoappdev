@@ -815,6 +815,7 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
     firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    houseNumber: Schema.Attribute.String;
     lastName: Schema.Attribute.String & Schema.Attribute.Required;
     leadType: Schema.Attribute.Enumeration<['zakelijk', 'particulier']> &
       Schema.Attribute.Required &
@@ -830,6 +831,7 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
       ['pending', 'synced', 'failed']
     > &
       Schema.Attribute.DefaultTo<'pending'>;
+    postalCode: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     source: Schema.Attribute.String & Schema.Attribute.DefaultTo<'website'>;
     updatedAt: Schema.Attribute.DateTime;

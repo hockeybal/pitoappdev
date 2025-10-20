@@ -9,6 +9,8 @@ interface LeadSubmission {
   lastName: string;
   email: string;
   phone?: string;
+  postalCode?: string;
+  houseNumber?: string;
   company?: string;
   message?: string;
   leadType: 'zakelijk' | 'particulier';
@@ -48,6 +50,8 @@ export async function POST(request: NextRequest) {
           lastName: body.lastName,
           email: body.email,
           phone: body.phone,
+          postalCode: body.postalCode,
+          houseNumber: body.houseNumber,
           company: body.company,
           message: body.message,
           leadType: body.leadType,
@@ -74,6 +78,8 @@ export async function POST(request: NextRequest) {
         lastName: body.lastName,
         email: body.email,
         phone: body.phone || null,
+        postalCode: body.postalCode || null,
+        houseNumber: body.houseNumber || null,
         company: body.company || null,
         leadType: body.leadType,
         message: body.message || null,

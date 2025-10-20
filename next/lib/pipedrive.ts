@@ -10,6 +10,7 @@ export interface PipedrivePersonData {
 
 export interface PipedriveOrganizationData {
   name: string;
+  address?: string;
 }
 
 export interface PipedriveLeadData {
@@ -159,33 +160,45 @@ export async function syncLeadToPipedrive(lead: {
   lastName: string;
   email: string;
   phone?: string;
+  postalCode?: string;
+  houseNumber?: string;
   company?: string;
   message?: string;
   leadType: LeadType;
 }): Promise<{ pipedriveId: string; personId: number }> {
   try {
-    const { firstName, lastName, email, phone, company, message, leadType } = lead;
+    const { firstName, lastName, email, phone, postalCode, houseNumber, company, message, leadType } = lead;
+    
+    // Construct address if postalCode and houseNumber are provided
+    const address = postalCode && houseNumber 
+      ? `${postalCode} ${houseNumber}` 
+      : undefined;
     
     // Step 1: Create or get organization (if company is provided)
     let organizationId: number | undefined;
     if (company) {
-      const org = await createPipedriveOrganization(
-        { name: company },
-        leadType
-      );
+      const orgData: PipedriveOrganizationData = {
+        name: company
+      };
+      
+      // Add address to organization if available
+      if (address) {
+        orgData.address = address;
+      }
+      
+      const org = await createPipedriveOrganization(orgData, leadType);
       organizationId = org.id;
     }
     
     // Step 2: Create person
-    const person = await createPipedrivePerson(
-      {
-        name: `${firstName} ${lastName}`,
-        email: [email],
-        phone: phone ? [phone] : [],
-        org_id: organizationId,
-      },
-      leadType
-    );
+    const personData: PipedrivePersonData = {
+      name: `${firstName} ${lastName}`,
+      email: [email],
+      phone: phone ? [phone] : [],
+      org_id: organizationId,
+    };
+    
+    const person = await createPipedrivePerson(personData, leadType);
     
     // Step 3: Create lead
     const leadTitle = company 
@@ -200,11 +213,22 @@ export async function syncLeadToPipedrive(lead: {
     
     const createdLead = await createPipedriveLead(pipedriveLeadData, leadType);
     
-    // Step 4: Add note if message is provided
+    // Step 4: Add note with address (if no company) and/or message
+    const noteContent: string[] = [];
+    
+    // Add address to note if there's no company (since we can't add it to organization)
+    if (!company && address) {
+      noteContent.push(`📍 Adres: ${address}`);
+    }
+    
     if (message) {
+      noteContent.push(`\n💬 Bericht van website:\n${message}`);
+    }
+    
+    if (noteContent.length > 0) {
       await addPipedriveNote(
         createdLead.id,
-        `Bericht van website:\n\n${message}`,
+        noteContent.join('\n'),
         leadType
       );
     }

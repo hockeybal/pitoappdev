@@ -27,6 +27,12 @@
     "phone": {
       "type": "string"
     },
+    "postalCode": {
+      "type": "string"
+    },
+    "houseNumber": {
+      "type": "string"
+    },
     "company": {
       "type": "string"
     },

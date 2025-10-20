@@ -239,8 +239,13 @@ export interface DynamicZonePricing extends Struct.ComponentSchema {
     icon: 'shoppingCart';
   };
   attributes: {
+    contact_email: Schema.Attribute.Email;
+    contact_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Heb je andere wensen?'>;
     heading: Schema.Attribute.String;
     plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
+    show_contact_bar: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     sub_heading: Schema.Attribute.String;
   };
 }

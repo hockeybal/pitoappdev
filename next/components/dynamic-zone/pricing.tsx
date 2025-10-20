@@ -34,14 +34,29 @@ export const Pricing = ({
   heading,
   sub_heading,
   plans,
+  show_contact_bar,
+  contact_text,
+  contact_email,
 }: {
   heading: string;
   sub_heading: string;
   plans: any[];
+  show_contact_bar?: boolean;
+  contact_text?: string;
+  contact_email?: string;
 }) => {
   const onClick = (plan: Plan) => {
     console.log('click', plan);
   };
+  
+  // Debug logging
+  console.log('💰 Pricing component props:', {
+    show_contact_bar,
+    contact_text,
+    contact_email,
+    hasPlans: plans?.length || 0
+  });
+  
   return (
     <div className="pt-40 pb-20 bg-white">
       <Container>
@@ -54,6 +69,38 @@ export const Pricing = ({
             <Card onClick={() => onClick(plan)} key={plan.name} plan={plan} />
           ))}
         </div>
+
+        {/* Contact balk */}
+        {(show_contact_bar || (contact_text || contact_email)) && (contact_text || contact_email) && (
+          <div className="max-w-4xl mx-auto mt-8">
+            <div className="relative bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-gray-200 overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-shadow duration-300">
+              {/* Decorative background elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl -z-0" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-3xl -z-0" />
+              
+              <div className="relative z-10 text-center">
+                {contact_text && (
+                  <p className="text-xl md:text-2xl font-semibold text-brand-orange mb-3">
+                    {contact_text}
+                  </p>
+                )}
+                {contact_email && (
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg md:text-xl">
+                    <span className="text-brand-blue font-medium">
+                      Neem contact met ons op via
+                    </span>
+                    <a
+                      href={`mailto:${contact_email}`}
+                      className="text-brand-blue font-semibold hover:text-brand-light-blue transition-colors duration-200 underline decoration-2 underline-offset-4"
+                    >
+                      {contact_email}
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </Container>
     </div>
   );

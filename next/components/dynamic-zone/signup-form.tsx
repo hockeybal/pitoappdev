@@ -40,6 +40,8 @@ export const SignupForm = ({
     lastName: '',
     email: '',
     phone: '',
+    postalCode: '',
+    houseNumber: '',
     company: '',
     message: '',
   });
@@ -88,6 +90,8 @@ export const SignupForm = ({
         lastName: '',
         email: '',
         phone: '',
+        postalCode: '',
+        houseNumber: '',
         company: '',
         message: '',
       });
@@ -202,8 +206,49 @@ export const SignupForm = ({
                 />
               </div>
 
+              {/* Postcode en Huisnummer */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="postalCode"
+                    className="block text-sm font-medium text-neutral-700 mb-2"
+                  >
+                    Postcode <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="postalCode"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all outline-none"
+                    placeholder="1234 AB"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="houseNumber"
+                    className="block text-sm font-medium text-neutral-700 mb-2"
+                  >
+                    Huisnummer <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="houseNumber"
+                    name="houseNumber"
+                    value={formData.houseNumber}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all outline-none"
+                    placeholder="42"
+                  />
+                </div>
+              </div>
+
               {/* Telefoon (optioneel) */}
-              {showPhoneField && (
+              {showPhoneField && formType !== 'particulier' && (
                 <div>
                   <label
                     htmlFor="phone"
@@ -246,7 +291,7 @@ export const SignupForm = ({
               )}
 
               {/* Bericht */}
-              {showMessageField && (
+              {showMessageField && formType !== 'particulier' && (
                 <div>
                   <label
                     htmlFor="message"

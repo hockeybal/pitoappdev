@@ -1,4 +1,4 @@
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { Locale, i18n } from '@/i18n.config';
 
@@ -7,6 +7,16 @@ import './globals.css';
 import { SlugProvider } from './context/SlugContext';
 import { Preview } from '@/components/preview';
 import { Providers } from '@/components/providers';
+
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '500x500', type: 'image/png' },
+    ],
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
+};
 
 export const viewport: Viewport = {
   themeColor: [

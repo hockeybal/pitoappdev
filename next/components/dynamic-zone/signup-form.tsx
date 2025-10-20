@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { IconCheck, IconLoader2 } from '@tabler/icons-react';
+import { IconCheck, IconLoader2, IconDownload } from '@tabler/icons-react';
 import { Container } from '../container';
 import { Button } from '../elements/button';
 import { Heading } from '../elements/heading';
@@ -49,6 +49,15 @@ export const SignupForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleDownloadBrochure = () => {
+    const link = document.createElement('a');
+    link.href = '/api/download-brochure';
+    link.download = 'Pito-App-Brochure.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -132,10 +141,20 @@ export const SignupForm = ({
                   <h3 className="text-lg font-semibold text-green-900 mb-2">
                     Succesvol verzonden!
                   </h3>
-                  <p className="text-green-700">{successMessage}</p>
+                  <p className="text-green-700 mb-6">{successMessage}</p>
+                  
+                  {/* Download brochure button */}
+                  <button
+                    onClick={handleDownloadBrochure}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
+                  >
+                    <IconDownload className="w-5 h-5" />
+                    Download onze brochure
+                  </button>
+                  
                   <button
                     onClick={() => setIsSuccess(false)}
-                    className="mt-4 text-sm text-green-600 hover:text-green-700 underline"
+                    className="mt-6 block text-sm text-green-600 hover:text-green-700 underline"
                   >
                     Nog een inschrijving doen
                   </button>

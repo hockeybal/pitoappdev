@@ -49,14 +49,6 @@ export const Pricing = ({
     console.log('click', plan);
   };
   
-  // Debug logging
-  console.log('💰 Pricing component props:', {
-    show_contact_bar,
-    contact_text,
-    contact_email,
-    hasPlans: plans?.length || 0
-  });
-  
   return (
     <div className="pt-40 pb-20 bg-white">
       <Container>

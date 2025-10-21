@@ -1,6 +1,6 @@
 'use client';
 
-import { IconCheck, IconReceipt2 } from '@tabler/icons-react';
+import { IconCheck, IconPlus, IconReceipt2 } from '@tabler/icons-react';
 import React, { useState } from 'react';
 import { useSession } from 'next-auth/react';
 
@@ -75,15 +75,12 @@ export const PricingWithUpgrades = ({
   const canUpgrade = (planId: number) => session && currentPlanId && planId !== currentPlanId;
 
   return (
-    <div className="pt-40">
+    <div className="pt-40 pb-20 bg-white">
       <Container>
-        <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconReceipt2 className="h-6 w-6 text-white" />
-        </FeatureIconContainer>
-        <Heading className="pt-4">{heading}</Heading>
-        <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
+        <Heading className="pt-4 text-neutral-900">{heading}</Heading>
+        <Subheading className="max-w-3xl mx-auto text-neutral-600">{sub_heading}</Subheading>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto gap-4 py-20 lg:items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto gap-6 py-20">
           {plans.map((plan) => (
             <PlanCard
               key={plan.id}
@@ -139,121 +136,154 @@ const PlanCard = ({ plan, onClick, isCurrentPlan, canUpgrade, currentPlanId }: P
       return 'Huidig Plan';
     }
     if (canUpgrade) {
-      return currentPlanId && plan.price > 0 ? 'Upgrade' : plan.CTA?.text || 'Kies Plan';
+      return currentPlanId && plan.price > 0 ? 'Upgrade Plan' : plan.CTA?.text || 'Kies Plan';
     }
     return plan.CTA?.text || 'Kies Plan';
   };
 
   const getButtonVariant = (): "outline" | "simple" | "primary" | "muted" => {
     if (isCurrentPlan) {
-      return 'muted'; // Gedimde knop voor huidig plan
+      return 'muted';
     }
     return 'outline';
   };
 
+  // Bereken prijs per dag
+  const pricePerDay = plan.price ? (plan.price / 365).toFixed(2) : null;
+
   return (
     <div
       className={cn(
-        'p-4 md:p-4 rounded-3xl bg-neutral-900 border-2 border-neutral-800 cursor-pointer transition-all duration-200',
-        plan.featured && 'border-neutral-50 bg-neutral-100',
-        isCurrentPlan && 'ring-2 ring-blue-500 border-blue-500',
-        canUpgrade && 'hover:border-indigo-500 hover:shadow-lg'
+        'p-1 rounded-3xl border transition-all duration-300 group',
+        plan.featured && 'border-brand-orange shadow-lg scale-[1.02] bg-white',
+        isCurrentPlan && 'border-blue-400 shadow-lg bg-white',
+        !plan.featured && !isCurrentPlan && 'border-neutral-200 bg-gradient-to-b from-neutral-50 to-white hover:border-neutral-300 shadow-sm',
+        canUpgrade && 'hover:shadow-xl hover:-translate-y-1 cursor-pointer'
       )}
     >
       <div
         className={cn(
-          'p-4 bg-neutral-800 rounded-2xl shadow-[0px_-1px_0px_0px_var(--neutral-700)]',
-          plan.featured && 'bg-white shadow-aceternity',
-          isCurrentPlan && 'bg-blue-50 border border-blue-200'
+          'p-6 rounded-[22px] h-full relative overflow-hidden',
+          plan.featured && 'bg-neutral-50',
+          isCurrentPlan && 'bg-blue-50',
+          !plan.featured && !isCurrentPlan && 'bg-white'
         )}
       >
-        <div className="flex justify-between items-center">
-          <p className={cn('font-medium', plan.featured && 'text-black', isCurrentPlan && 'text-blue-900')}>
-            {plan.name}
-            {isCurrentPlan && <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">ACTIEF</span>}
-          </p>
-          {plan.featured && !isCurrentPlan && (
-            <div
-              className={cn(
-                'font-medium text-xs px-3 py-1 rounded-full relative bg-neutral-900'
-              )}
-            >
-              <div className="absolute inset-x-0 bottom-0 w-3/4 mx-auto h-px bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
-              Featured
-            </div>
-          )}
-        </div>
-
-        <p className={cn('text-sm text-neutral-500 mt-4', plan.featured && 'text-neutral-700')}>
-          {plan.sub_text}
-        </p>
-
-        <div className="mt-8">
-          {plan.price && (
-            <span
-              className={cn(
-                'text-lg font-bold text-neutral-500',
-                plan.featured && 'text-neutral-700'
-              )}
-            >
-              €
-            </span>
-          )}
-          <span
-            className={cn('text-4xl font-bold', plan.featured && 'text-black')}
-          >
-            {plan.price || plan?.CTA?.text}
-          </span>
-          {plan.price && (
-            <span
-              className={cn(
-                'text-lg font-normal text-neutral-500 ml-2',
-                plan.featured && 'text-neutral-700'
-              )}
-            >
-              / maand
-            </span>
-          )}
-        </div>
+        {/* Background decoration - subtiel */}
+        {plan.featured ? (
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/3 rounded-full blur-3xl -z-0" />
+        ) : isCurrentPlan ? (
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100/30 rounded-full blur-3xl -z-0" />
+        ) : (
+          <div className="absolute top-0 right-0 w-40 h-40 bg-neutral-100/50 rounded-full blur-3xl -z-0" />
+        )}
         
-        <Button
-          variant={getButtonVariant()}
-          className={cn(
-            'w-full mt-10 mb-4',
-            plan.featured &&
-              'bg-black text-white hover:bg-black/80 hover:text-white',
-            isCurrentPlan &&
-              'bg-blue-100 text-blue-700 border-blue-200 cursor-default hover:bg-blue-100 hover:text-blue-700',
-            canUpgrade && !isCurrentPlan &&
-              'bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600'
-          )}
-          onClick={onClick}
-          disabled={isCurrentPlan}
-        >
-          {getButtonText()}
-        </Button>
-      </div>
-
-      <div className="mt-1 p-4">
-        {plan.perks.map((feature, idx) => (
-          <Step featured={plan.featured} key={idx}>
-            {feature.text}
-          </Step>
-        ))}
-      </div>
-      
-      {plan.additional_perks && plan.additional_perks.length > 0 && (
-        <>
-          <Divider featured={plan.featured} />
-          <div className="p-4">
-            {plan.additional_perks?.map((feature, idx) => (
-              <Step featured={plan.featured} additional key={idx}>
+        <div className="relative z-10">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <p className={cn('font-semibold text-lg text-neutral-900', 
+                plan.featured && 'text-brand-blue',
+                isCurrentPlan && 'text-blue-900'
+              )}>
+                {plan.name}
+                {isCurrentPlan && (
+                  <span className="ml-2 text-xs bg-blue-500 text-white px-2 py-1 rounded-full font-medium">
+                    ✓ Actief
+                  </span>
+                )}
+              </p>
+              {plan.sub_text && (
+                <p className={cn('text-sm text-neutral-500 mt-1',
+                  isCurrentPlan && 'text-blue-600'
+                )}>
+                  {plan.sub_text}
+                </p>
+              )}
+            </div>
+            {plan.featured && !isCurrentPlan && (
+              <div className="font-medium text-xs px-3 py-1.5 rounded-full bg-brand-orange text-white shadow-md">
+                ⭐ Populair
+              </div>
+            )}
+          </div>
+          
+          <div className="mb-8">
+            <div className="flex items-baseline">
+              {plan.price && (
+                <span className={cn('text-2xl font-bold text-neutral-600')}>
+                  €
+                </span>
+              )}
+              <span className={cn('text-5xl font-bold text-neutral-900 ml-1', 
+                plan.featured && 'text-brand-orange',
+                isCurrentPlan && 'text-blue-900'
+              )}>
+                {plan.price || plan?.CTA?.text}
+              </span>
+              {plan.price && (
+                <span className={cn('text-base font-medium text-neutral-500 ml-2')}>
+                  / jaar
+                </span>
+              )}
+            </div>
+            {pricePerDay && (
+              <p className="text-sm text-neutral-500 mt-2 flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-brand-orange"></span>
+                Slechts €{pricePerDay} per dag
+              </p>
+            )}
+          </div>
+        
+          <Button
+            variant={getButtonVariant()}
+            className={cn(
+              'w-full mb-6 border-2 border-neutral-300 text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 transition-all duration-200 font-medium',
+              plan.featured &&
+                'bg-brand-orange text-white border-brand-orange hover:bg-brand-orange/90 hover:border-brand-orange hover:shadow-lg hover:text-white transform hover:scale-[1.02]',
+              isCurrentPlan &&
+                'bg-blue-100 text-blue-700 border-blue-300 cursor-not-allowed opacity-75 hover:bg-blue-100 hover:text-blue-700 hover:scale-100',
+              canUpgrade && !isCurrentPlan &&
+                'border-indigo-500 text-indigo-700 hover:bg-indigo-50 hover:border-indigo-600'
+            )}
+            onClick={onClick}
+            disabled={isCurrentPlan}
+          >
+            {getButtonText()}
+          </Button>
+          
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+              <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Inclusief</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+            </div>
+            
+            {plan.perks.map((feature, idx) => (
+              <Step featured={plan.featured} key={idx}>
                 {feature.text}
               </Step>
             ))}
           </div>
-        </>
-      )}
+          
+          {plan.additional_perks && plan.additional_perks.length > 0 && (
+            <>
+              <Divider featured={plan.featured} />
+              <div className="space-y-3 pt-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+                  <span className="text-xs font-medium text-brand-orange uppercase tracking-wider">Extra voordelen</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+                </div>
+                {plan.additional_perks?.map((feature, idx) => (
+                  <Step featured={plan.featured} additional key={idx}>
+                    {feature.text}
+                  </Step>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
@@ -268,19 +298,28 @@ const Step = ({
   featured?: boolean;
 }) => {
   return (
-    <div className="flex items-start justify-start gap-2 my-4">
+    <div className="flex items-start justify-start gap-3 group">
       <div
         className={cn(
-          'h-4 w-4 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0 mt-0.5',
-          additional ? 'bg-indigo-600' : 'bg-neutral-700'
+          'h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-200',
+          additional 
+            ? 'bg-brand-orange shadow-sm group-hover:shadow-md group-hover:scale-110' 
+            : 'bg-neutral-200 group-hover:bg-neutral-300',
+          featured && !additional && 'bg-brand-blue/20'
         )}
       >
-        <IconCheck className="h-3 w-3 [stroke-width:4px] text-neutral-300" />
+        <IconCheck 
+          className={cn(
+            'h-3 w-3 [stroke-width:3px]',
+            additional ? 'text-white' : 'text-neutral-600',
+            featured && !additional && 'text-brand-blue'
+          )} 
+        />
       </div>
       <div
         className={cn(
-          'font-medium text-white text-sm',
-          featured && 'text-black'
+          'font-normal text-neutral-700 text-sm leading-relaxed',
+          additional && 'font-medium text-neutral-900'
         )}
       >
         {children}
@@ -291,16 +330,25 @@ const Step = ({
 
 const Divider = ({ featured }: { featured?: boolean }) => {
   return (
-    <div className="relative">
-      <div
-        className={cn('w-full h-px bg-neutral-950', featured && 'bg-white')}
-      />
-      <div
-        className={cn(
-          'w-full h-px bg-neutral-800',
-          featured && 'bg-neutral-200'
-        )}
-      />
+    <div className="relative my-6">
+      <div className="absolute inset-0 flex items-center" aria-hidden="true">
+        <div className="w-full border-t border-neutral-200" />
+      </div>
+      <div className="relative flex justify-center">
+        <div
+          className={cn(
+            'bg-white px-3 py-1.5 rounded-full border border-neutral-200 shadow-sm',
+            featured && 'border-brand-orange/30 bg-neutral-50'
+          )}
+        >
+          <IconPlus
+            className={cn(
+              'h-3.5 w-3.5 [stroke-width:2.5px] text-neutral-400',
+              featured && 'text-brand-orange'
+            )}
+          />
+        </div>
+      </div>
     </div>
   );
 };

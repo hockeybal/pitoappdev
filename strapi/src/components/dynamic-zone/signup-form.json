@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_dynamic_zone_signup_forms",
+  "info": {
+    "displayName": "Signup Form",
+    "icon": "envelop",
+    "description": "Configureerbaar inschrijfformulier met Pipedrive integratie"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true,
+      "default": "Schrijf je in"
+    },
+    "sub_heading": {
+      "type": "text"
+    },
+    "formType": {
+      "type": "enumeration",
+      "enum": ["zakelijk", "particulier"],
+      "required": true,
+      "default": "particulier"
+    },
+    "showCompanyField": {
+      "type": "boolean",
+      "default": false
+    },
+    "showPhoneField": {
+      "type": "boolean",
+      "default": true
+    },
+    "showMessageField": {
+      "type": "boolean",
+      "default": true
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Verstuur"
+    },
+    "successMessage": {
+      "type": "text",
+      "default": "Bedankt voor je inschrijving! We nemen zo spoedig mogelijk contact met je op."
+    },
+    "privacyText": {
+      "type": "text",
+      "default": "Door dit formulier te verzenden ga je akkoord met onze privacyverklaring."
+    },
+    "backgroundColor": {
+      "type": "enumeration",
+      "enum": ["white", "gray", "gradient"],
+      "default": "white"
+    },
+    "pipedriveEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Schakel Pipedrive sync in of uit"
+    }
+  }
+}

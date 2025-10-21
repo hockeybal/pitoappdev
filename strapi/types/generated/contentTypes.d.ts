@@ -467,7 +467,11 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         };
       }>;
     dynamic_zone: Schema.Attribute.DynamicZone<
-      ['dynamic-zone.related-articles', 'dynamic-zone.cta']
+      [
+        'dynamic-zone.related-articles',
+        'dynamic-zone.cta',
+        'dynamic-zone.social-proof',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -544,6 +548,7 @@ export interface ApiBlogPageBlogPage extends Struct.SingleTypeSchema {
         'dynamic-zone.faq',
         'dynamic-zone.cta',
         'dynamic-zone.brands',
+        'dynamic-zone.social-proof',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -792,6 +797,49 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLeadLead extends Struct.CollectionTypeSchema {
+  collectionName: 'leads';
+  info: {
+    description: 'Inschrijvingen van zakelijke en particuliere klanten';
+    displayName: 'Lead';
+    pluralName: 'leads';
+    singularName: 'lead';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    company: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    houseNumber: Schema.Attribute.String;
+    lastName: Schema.Attribute.String & Schema.Attribute.Required;
+    leadType: Schema.Attribute.Enumeration<['zakelijk', 'particulier']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'particulier'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lead.lead'> &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
+    pipedriveId: Schema.Attribute.String & Schema.Attribute.Private;
+    pipedriveSyncError: Schema.Attribute.Text & Schema.Attribute.Private;
+    pipedriveSyncStatus: Schema.Attribute.Enumeration<
+      ['pending', 'synced', 'failed']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
+    postalCode: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    source: Schema.Attribute.String & Schema.Attribute.DefaultTo<'website'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLogoLogo extends Struct.CollectionTypeSchema {
   collectionName: 'logos';
   info: {
@@ -851,6 +899,10 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'dynamic-zone.cta',
         'dynamic-zone.form-next-to-section',
         'dynamic-zone.faq',
+        'dynamic-zone.berijk-impact',
+        'dynamic-zone.contact-sidebar',
+        'dynamic-zone.signup-form',
+        'dynamic-zone.social-proof',
       ]
     > &
       Schema.Attribute.SetPluginOptions<{
@@ -1791,6 +1843,7 @@ declare module '@strapi/strapi' {
       'api::email-template.email-template': ApiEmailTemplateEmailTemplate;
       'api::faq.faq': ApiFaqFaq;
       'api::global.global': ApiGlobalGlobal;
+      'api::lead.lead': ApiLeadLead;
       'api::logo.logo': ApiLogoLogo;
       'api::page.page': ApiPagePage;
       'api::plan.plan': ApiPlanPlan;

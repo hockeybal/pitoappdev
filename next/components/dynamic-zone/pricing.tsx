@@ -24,6 +24,7 @@ type Plan = {
   perks: Perks[];
   additional_perks: Perks[];
   description: string;
+  sub_text?: string;
   number: string;
   featured?: boolean;
   CTA?: CTA | undefined;
@@ -33,114 +34,187 @@ export const Pricing = ({
   heading,
   sub_heading,
   plans,
+  show_contact_bar,
+  contact_text,
+  contact_email,
 }: {
   heading: string;
   sub_heading: string;
   plans: any[];
+  show_contact_bar?: boolean;
+  contact_text?: string;
+  contact_email?: string;
 }) => {
   const onClick = (plan: Plan) => {
     console.log('click', plan);
   };
+  
   return (
-    <div className="pt-40">
+    <div className="pt-40 pb-20 bg-white">
       <Container>
-        <FeatureIconContainer className="flex justify-center items-center overflow-hidden">
-          <IconReceipt2 className="h-6 w-6 text-brand-blue" />
-        </FeatureIconContainer>
-        <Heading className="pt-4">{heading}</Heading>
-        <Subheading className="max-w-3xl mx-auto">{sub_heading}</Subheading>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto gap-4 py-20 lg:items-start">
+        <Heading className="pt-4 text-neutral-900">{heading}</Heading>
+        <Subheading className="max-w-3xl mx-auto text-neutral-600">{sub_heading}</Subheading>
+        
+        {/* Prijzen grid met verbeterde spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto gap-6 py-20">
           {plans.map((plan) => (
             <Card onClick={() => onClick(plan)} key={plan.name} plan={plan} />
           ))}
         </div>
+
+        {/* Contact balk */}
+        {(show_contact_bar || (contact_text || contact_email)) && (contact_text || contact_email) && (
+          <div className="max-w-4xl mx-auto mt-8">
+            <div className="relative bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-gray-200 overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.15)] transition-shadow duration-300">
+              {/* Decorative background elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-orange/5 rounded-full blur-3xl -z-0" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue/5 rounded-full blur-3xl -z-0" />
+              
+              <div className="relative z-10 text-center">
+                {contact_text && (
+                  <p className="text-xl md:text-2xl font-semibold text-brand-orange mb-3">
+                    {contact_text}
+                  </p>
+                )}
+                {contact_email && (
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-lg md:text-xl">
+                    <span className="text-brand-blue font-medium">
+                      Neem contact met ons op via
+                    </span>
+                    <a
+                      href={`mailto:${contact_email}`}
+                      className="text-brand-blue font-semibold hover:text-brand-light-blue transition-colors duration-200 underline decoration-2 underline-offset-4"
+                    >
+                      {contact_email}
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </Container>
     </div>
   );
 };
 
 const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
+  // Bereken prijs per dag (365 dagen per jaar)
+  const pricePerDay = plan.price ? (plan.price / 365).toFixed(2) : null;
+  
   return (
     <div
       className={cn(
-        'p-4 md:p-4 rounded-3xl bg-white border-2 border-neutral-200',
-        plan.featured && 'border-brand-blue bg-brand-blue/5'
+        'p-1 rounded-3xl border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group',
+        plan.featured 
+          ? 'border-brand-orange shadow-lg scale-[1.02] bg-white' 
+          : 'border-neutral-200 bg-gradient-to-b from-neutral-50 to-white hover:border-neutral-300 shadow-sm'
       )}
     >
       <div
         className={cn(
-          'p-4 bg-neutral-50 rounded-2xl shadow-sm',
-          plan.featured && 'bg-white shadow-lg'
+          'p-6 rounded-[22px] h-full relative overflow-hidden',
+          plan.featured ? 'bg-neutral-50' : 'bg-white'
         )}
       >
-        <div className="flex justify-between items-center">
-          <p className={cn('font-medium text-neutral-900')}>
-            {plan.name}
-          </p>
-          {plan.featured && (
-            <div
-              className={cn(
-                'font-medium text-xs px-3 py-1 rounded-full relative bg-brand-orange text-white'
+        {/* Background decoration - subtiel */}
+        {plan.featured ? (
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/3 rounded-full blur-3xl -z-0" />
+        ) : (
+          <div className="absolute top-0 right-0 w-40 h-40 bg-neutral-100/50 rounded-full blur-3xl -z-0" />
+        )}
+        
+        <div className="relative z-10">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <p className={cn('font-semibold text-lg text-neutral-900', plan.featured && 'text-brand-blue')}>
+                {plan.name}
+              </p>
+              {plan.sub_text && (
+                <p className="text-sm text-neutral-500 mt-1">
+                  {plan.sub_text}
+                </p>
               )}
-            >
-              <div className="absolute inset-x-0 bottom-0 w-3/4 mx-auto h-px bg-gradient-to-r from-transparent via-orange-300 to-transparent"></div>
-              Meest gekozen
             </div>
-          )}
-        </div>
-        <div className="mt-8">
-          {plan.price && (
-            <span
-              className={cn(
-                'text-lg font-bold text-neutral-600'
+            {plan.featured && (
+              <div
+                className={cn(
+                  'font-medium text-xs px-3 py-1.5 rounded-full bg-brand-orange text-white shadow-md'
+                )}
+              >
+                ⭐ Populair
+              </div>
+            )}
+          </div>
+          
+          <div className="mb-8">
+            <div className="flex items-baseline">
+              {plan.price && (
+                <span className={cn('text-2xl font-bold text-neutral-600')}>
+                  €
+                </span>
               )}
-            >
-              €
-            </span>
-          )}
-          <span
-            className={cn('text-4xl font-bold text-neutral-900')}
+              <span className={cn('text-5xl font-bold text-neutral-900 ml-1', plan.featured && 'text-brand-orange')}>
+                {plan.price || plan?.CTA?.text}
+              </span>
+              {plan.price && (
+                <span className={cn('text-base font-medium text-neutral-500 ml-2')}>
+                  / jaar
+                </span>
+              )}
+            </div>
+            {pricePerDay && (
+              <p className="text-sm text-neutral-500 mt-2 flex items-center gap-1">
+                <span className="inline-block w-1 h-1 rounded-full bg-brand-orange"></span>
+                Slechts €{pricePerDay} per dag
+              </p>
+            )}
+          </div>
+          
+          <Button
+            variant="outline"
+            className={cn(
+              'w-full mb-6 border-2 border-neutral-300 text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400 transition-all duration-200 font-medium',
+              plan.featured &&
+                'bg-brand-orange text-white border-brand-orange hover:bg-brand-orange/90 hover:border-brand-orange hover:shadow-lg hover:text-white transform hover:scale-[1.02]'
+            )}
+            onClick={onClick}
           >
-            {plan.price || plan?.CTA?.text}
-          </span>
-          {plan.price && (
-            <span
-              className={cn(
-                'text-lg font-normal text-neutral-600 ml-2'
-              )}
-            >
-              / Per jaar
-            </span>
+            {plan?.CTA?.text}
+          </Button>
+          
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+              <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Inclusief</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-neutral-200 to-transparent" />
+            </div>
+            
+            {plan.perks.map((feature, idx) => (
+              <Step featured={plan.featured} key={idx}>
+                {feature.text}
+              </Step>
+            ))}
+          </div>
+          
+          {plan.additional_perks && plan.additional_perks.length > 0 && (
+            <>
+              <Divider featured={plan.featured} />
+              <div className="space-y-3 pt-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+                  <span className="text-xs font-medium text-brand-orange uppercase tracking-wider">Extra voordelen</span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+                </div>
+                {plan.additional_perks?.map((feature, idx) => (
+                  <Step featured={plan.featured} additional key={idx}>
+                    {feature.text}
+                  </Step>
+                ))}
+              </div>
+            </>
           )}
         </div>
-        <Button
-          variant="outline"
-          className={cn(
-            'w-full mt-10 mb-4 border-neutral-300 text-neutral-900 hover:bg-neutral-50',
-            plan.featured &&
-              'bg-brand-orange text-white border-brand-orange hover:bg-brand-orange/90 hover:text-white'
-          )}
-          onClick={onClick}
-        >
-          {plan?.CTA?.text}
-        </Button>
-      </div>
-      <div className="mt-1 p-4">
-        {plan.perks.map((feature, idx) => (
-          <Step featured={plan.featured} key={idx}>
-            {feature.text}
-          </Step>
-        ))}
-      </div>
-      {plan.additional_perks && plan.additional_perks.length > 0 && (
-        <Divider featured={plan.featured} />
-      )}
-      <div className="p-4">
-        {plan.additional_perks?.map((feature, idx) => (
-          <Step featured={plan.featured} additional key={idx}>
-            {feature.text}
-          </Step>
-        ))}
       </div>
     </div>
   );
@@ -148,7 +222,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
 
 const Step = ({
   children,
-  additional,
+  additional,  
   featured,
 }: {
   children: React.ReactNode;
@@ -156,18 +230,28 @@ const Step = ({
   featured?: boolean;
 }) => {
   return (
-    <div className="flex items-start justify-start gap-2 my-4">
+    <div className="flex items-start justify-start gap-3 group">
       <div
         className={cn(
-          'h-4 w-4 rounded-full bg-neutral-300 flex items-center justify-center flex-shrink-0 mt-0.5',
-          additional ? 'bg-brand-light-blue' : 'bg-neutral-300'
+          'h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-200',
+          additional 
+            ? 'bg-brand-orange shadow-sm group-hover:shadow-md group-hover:scale-110' 
+            : 'bg-neutral-200 group-hover:bg-neutral-300',
+          featured && !additional && 'bg-brand-blue/20'
         )}
       >
-        <IconCheck className="h-3 w-3 [stroke-width:4px] text-white" />
+        <IconCheck 
+          className={cn(
+            'h-3 w-3 [stroke-width:3px]',
+            additional ? 'text-white' : 'text-neutral-600',
+            featured && !additional && 'text-brand-blue'
+          )} 
+        />
       </div>
       <div
         className={cn(
-          'font-medium text-neutral-900 text-sm'
+          'font-normal text-neutral-700 text-sm leading-relaxed',
+          additional && 'font-medium text-neutral-900'
         )}
       >
         {children}
@@ -178,25 +262,24 @@ const Step = ({
 
 const Divider = ({ featured }: { featured?: boolean }) => {
   return (
-    <div className="relative">
-      <div
-        className={cn('w-full h-px bg-neutral-100')}
-      />
-      <div
-        className={cn(
-          'w-full h-px bg-neutral-200'
-        )}
-      />
-      <div
-        className={cn(
-          'absolute inset-0 h-5 w-5 m-auto rounded-xl bg-white shadow-sm flex items-center justify-center border border-neutral-200'
-        )}
-      >
-        <IconPlus
+    <div className="relative my-6">
+      <div className="absolute inset-0 flex items-center" aria-hidden="true">
+        <div className="w-full border-t border-neutral-200" />
+      </div>
+      <div className="relative flex justify-center">
+        <div
           className={cn(
-            'h-3 w-3 [stroke-width:4px] text-neutral-600'
+            'bg-white px-3 py-1.5 rounded-full border border-neutral-200 shadow-sm',
+            featured && 'border-brand-orange/30 bg-neutral-50'
           )}
-        />
+        >
+          <IconPlus
+            className={cn(
+              'h-3.5 w-3.5 [stroke-width:2.5px] text-neutral-400',
+              featured && 'text-brand-orange'
+            )}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Mockups Component - Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .iphone-frame {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+        .iphone-frame:hover {
+            transform: translateY(-8px) scale(1.02);
+            transition: all 0.3s ease;
+        }
+        .eye-icon {
+            background: linear-gradient(135deg, #ff7e1d 0%, #ff9a56 100%);
+            box-shadow: 0 8px 24px rgba(255, 126, 29, 0.35);
+        }
+        .mockup-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .mockup-grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .mockup-grid-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-gray-900 mb-4">
+                Zo ziet jouw plek in de app eruit
+            </h1>
+            <div class="flex items-center justify-center gap-2 text-xl text-orange-500 font-semibold">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                Hier wordt jouw bedrijf zichtbaar met PITO Partner
+            </div>
+        </div>
+
+        <!-- iPhone Mockups Grid -->
+        <div class="mockup-grid mockup-grid-4">
+            <!-- Mockup 1 -->
+            <div class="relative group cursor-pointer">
+                <div class="relative">
+                    <div class="iphone-frame relative w-full bg-black rounded-[3rem] p-3" style="aspect-ratio: 9/19.5;">
+                        <!-- iPhone Notch -->
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-3xl z-20"></div>
+                        
+                        <!-- Screen Content -->
+                        <div class="relative w-full h-full bg-gradient-to-br from-blue-50 to-orange-50 rounded-[2.5rem] flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <div class="text-6xl mb-4">🍕</div>
+                                <p class="text-lg font-semibold text-gray-700">20% Korting bij<br>La Trattoria!</p>
+                            </div>
+                        </div>
+
+                        <!-- Hover Text -->
+                        <div class="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/10 transition-all duration-300 rounded-[3rem] flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                                <span class="text-sm font-semibold text-gray-900">Klik voor groter</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orange Eye Icon - Floating Above iPhone -->
+                    <div class="eye-icon absolute -top-3 -right-3 z-30 w-16 h-16 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Title and Description -->
+                <div class="mt-6 text-center px-2">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Deals & Kortingen</h3>
+                    <p class="text-base text-gray-600 leading-relaxed">Ontdek exclusieve aanbiedingen van bedrijven in jouw buurt</p>
+                </div>
+            </div>
+
+            <!-- Mockup 2 -->
+            <div class="relative group cursor-pointer">
+                <div class="relative">
+                    <div class="iphone-frame relative w-full bg-black rounded-[3rem] p-3" style="aspect-ratio: 9/19.5;">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-3xl z-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-br from-orange-50 to-blue-50 rounded-[2.5rem] flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <div class="text-6xl mb-4">🚴</div>
+                                <p class="text-lg font-semibold text-gray-700">Bezorger gezocht<br>bij Thuisbezorgd!</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/10 transition-all duration-300 rounded-[3rem] flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                                <span class="text-sm font-semibold text-gray-900">Klik voor groter</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eye-icon absolute -top-3 -right-3 z-30 w-16 h-16 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-6 text-center px-2">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Vacatures</h3>
+                    <p class="text-base text-gray-600 leading-relaxed">Vind lokale banen bij bedrijven die actief zoeken naar personeel</p>
+                </div>
+            </div>
+
+            <!-- Mockup 3 -->
+            <div class="relative group cursor-pointer">
+                <div class="relative">
+                    <div class="iphone-frame relative w-full bg-black rounded-[3rem] p-3" style="aspect-ratio: 9/19.5;">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-3xl z-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 rounded-[2.5rem] flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <div class="text-6xl mb-4">☕</div>
+                                <p class="text-lg font-semibold text-gray-700">Coffee Corner<br>Hiring Barista!</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/10 transition-all duration-300 rounded-[3rem] flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                                <span class="text-sm font-semibold text-gray-900">Klik voor groter</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eye-icon absolute -top-3 -right-3 z-30 w-16 h-16 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-6 text-center px-2">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Bedrijfsprofielen</h3>
+                    <p class="text-base text-gray-600 leading-relaxed">Bekijk gedetailleerde informatie over alle aangesloten ondernemers</p>
+                </div>
+            </div>
+
+            <!-- Mockup 4 -->
+            <div class="relative group cursor-pointer">
+                <div class="relative">
+                    <div class="iphone-frame relative w-full bg-black rounded-[3rem] p-3" style="aspect-ratio: 9/19.5;">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-3xl z-20"></div>
+                        <div class="relative w-full h-full bg-gradient-to-br from-orange-50 to-pink-50 rounded-[2.5rem] flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <div class="text-6xl mb-4">🎁</div>
+                                <p class="text-lg font-semibold text-gray-700">50% Korting<br>op alle producten!</p>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-orange-500/0 group-hover:bg-orange-500/10 transition-all duration-300 rounded-[3rem] flex items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                                <span class="text-sm font-semibold text-gray-900">Klik voor groter</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="eye-icon absolute -top-3 -right-3 z-30 w-16 h-16 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-6 text-center px-2">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Alle Categorieën</h3>
+                    <p class="text-base text-gray-600 leading-relaxed">Blader door restaurants, winkels, diensten en nog veel meer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="mt-20 bg-gradient-to-br from-orange-50 to-blue-50 rounded-3xl p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">✨ Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">📱</div>
+                    <h3 class="font-bold text-lg mb-2">1-4 Mockups</h3>
+                    <p class="text-gray-600 text-sm">Variabel aantal iPhone mockups (min 1, max 4)</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">👁️</div>
+                    <h3 class="font-bold text-lg mb-2">Oranje Oogje</h3>
+                    <p class="text-gray-600 text-sm">Iconic eye icon rechtsboven elke mockup</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">�</div>
+                    <h3 class="font-bold text-lg mb-2">Titels & Beschrijvingen</h3>
+                    <p class="text-gray-600 text-sm">Leg per mockup uit wat gebruikers zien</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">�🔍</div>
+                    <h3 class="font-bold text-lg mb-2">Lightbox</h3>
+                    <p class="text-gray-600 text-sm">Klik voor fullscreen weergave</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">📐</div>
+                    <h3 class="font-bold text-lg mb-2">Responsive</h3>
+                    <p class="text-gray-600 text-sm">Perfect op mobiel, tablet én desktop</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">✨</div>
+                    <h3 class="font-bold text-lg mb-2">Animaties</h3>
+                    <p class="text-gray-600 text-sm">Smooth hover & scroll effects</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="text-3xl mb-3">🎨</div>
+                    <h3 class="font-bold text-lg mb-2">CMS Beheer</h3>
+                    <p class="text-gray-600 text-sm">Volledig aanpasbaar via Strapi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="mt-16 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">📖 Volgende Stappen</h2>
+            <div class="max-w-2xl mx-auto space-y-3 text-left">
+                <div class="flex items-start gap-3 bg-blue-50 rounded-xl p-4">
+                    <span class="text-2xl">1️⃣</span>
+                    <div>
+                        <p class="font-semibold">Herstart Strapi</p>
+                        <code class="text-sm text-gray-600">cd strapi && npm run develop</code>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 bg-orange-50 rounded-xl p-4">
+                    <span class="text-2xl">2️⃣</span>
+                    <div>
+                        <p class="font-semibold">Voeg component toe</p>
+                        <p class="text-sm text-gray-600">Content Manager → Dynamic Zone → "App Mockups"</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 bg-green-50 rounded-xl p-4">
+                    <span class="text-2xl">3️⃣</span>
+                    <div>
+                        <p class="font-semibold">Upload screenshots</p>
+                        <p class="text-sm text-gray-600">1170 × 2532 px (iPhone aspect ratio)</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 bg-purple-50 rounded-xl p-4">
+                    <span class="text-2xl">4️⃣</span>
+                    <div>
+                        <p class="font-semibold">Test & Deploy</p>
+                        <p class="text-sm text-gray-600">Check responsive design en publiceer!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Note -->
+        <div class="mt-12 text-center text-sm text-gray-500">
+            <p>📄 Bekijk <strong>IPHONE_MOCKUPS_INSTRUCTIES.md</strong> voor gedetailleerde documentatie</p>
+        </div>
+    </div>
+</body>
+</html>

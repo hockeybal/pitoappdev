@@ -61,6 +61,21 @@ export interface CardsSocialMediaCard extends Struct.ComponentSchema {
   };
 }
 
+export interface DynamicZoneBerijkImpact extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_berijk_impacts';
+  info: {
+    displayName: 'berijk_impact';
+    icon: 'bold';
+  };
+  attributes: {
+    bottom_text: Schema.Attribute.Text;
+    CTA: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    locations: Schema.Attribute.Component<'items.locations', true>;
+    stats: Schema.Attribute.Component<'items.stats', true>;
+  };
+}
+
 export interface DynamicZoneBrands extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_brands';
   info: {
@@ -72,6 +87,26 @@ export interface DynamicZoneBrands extends Struct.ComponentSchema {
     heading: Schema.Attribute.String;
     logos: Schema.Attribute.Relation<'oneToMany', 'api::logo.logo'>;
     sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneContactSidebar extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_contact_sidebars';
+  info: {
+    description: 'Sliding contact sidebar with team members and contact options';
+    displayName: 'Contact Sidebar';
+    icon: 'phone';
+  };
+  attributes: {
+    contact_methods: Schema.Attribute.Component<'items.contact-method', true>;
+    cta_button: Schema.Attribute.Component<'shared.button', false>;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Service & contact'>;
+    opening_hours: Schema.Attribute.String;
+    team_members: Schema.Attribute.Media<'images', true>;
   };
 }
 
@@ -151,6 +186,8 @@ export interface DynamicZoneHero extends Struct.ComponentSchema {
   attributes: {
     CTAs: Schema.Attribute.Component<'shared.button', true>;
     heading: Schema.Attribute.String;
+    icons: Schema.Attribute.Component<'shared.icon-text', true>;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -172,14 +209,25 @@ export interface DynamicZoneHowItWorks extends Struct.ComponentSchema {
 export interface DynamicZoneLaunches extends Struct.ComponentSchema {
   collectionName: 'components_dynamic_zone_launches';
   info: {
-    description: '';
-    displayName: 'Launches';
-    icon: 'rocket';
+    description: 'iPhone mockups section with up to 4 screenshots';
+    displayName: 'App Mockups';
+    icon: 'phone';
   };
   attributes: {
-    heading: Schema.Attribute.String;
-    launches: Schema.Attribute.Component<'shared.launches', true>;
-    sub_heading: Schema.Attribute.String;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Zo ziet jouw plek in de app eruit'>;
+    mockups: Schema.Attribute.Component<'shared.iphone-mockup', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 1;
+        },
+        number
+      >;
+    sub_heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Hier wordt jouw bedrijf zichtbaar met PITO Partner'>;
   };
 }
 
@@ -191,8 +239,13 @@ export interface DynamicZonePricing extends Struct.ComponentSchema {
     icon: 'shoppingCart';
   };
   attributes: {
+    contact_email: Schema.Attribute.Email;
+    contact_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Heb je andere wensen?'>;
     heading: Schema.Attribute.String;
     plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
+    show_contact_bar: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -220,6 +273,63 @@ export interface DynamicZoneRelatedProducts extends Struct.ComponentSchema {
   attributes: {
     heading: Schema.Attribute.String;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    sub_heading: Schema.Attribute.String;
+  };
+}
+
+export interface DynamicZoneSignupForm extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_signup_forms';
+  info: {
+    description: 'Configureerbaar inschrijfformulier met Pipedrive integratie';
+    displayName: 'Signup Form';
+    icon: 'envelop';
+  };
+  attributes: {
+    backgroundColor: Schema.Attribute.Enumeration<
+      ['white', 'gray', 'gradient']
+    > &
+      Schema.Attribute.DefaultTo<'white'>;
+    buttonText: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Verstuur'>;
+    formType: Schema.Attribute.Enumeration<['zakelijk', 'particulier']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'particulier'>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Schrijf je in'>;
+    pipedriveEnabled: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    privacyText: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Door dit formulier te verzenden ga je akkoord met onze privacyverklaring.'>;
+    showCompanyField: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    showMessageField: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    showPhoneField: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    sub_heading: Schema.Attribute.Text;
+    successMessage: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'Bedankt voor je inschrijving! We nemen zo spoedig mogelijk contact met je op.'>;
+  };
+}
+
+export interface DynamicZoneSocialProof extends Struct.ComponentSchema {
+  collectionName: 'components_dynamic_zone_social_proofs';
+  info: {
+    description: 'Een strook met statistieken om social proof te tonen';
+    displayName: 'Social Proof';
+    icon: 'chartLine';
+  };
+  attributes: {
+    heading: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Sluit je aan bij vele anderen'>;
+    stats: Schema.Attribute.Component<'items.stat-item', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+        },
+        number
+      >;
     sub_heading: Schema.Attribute.String;
   };
 }
@@ -270,6 +380,25 @@ export interface GlobalNavbar extends Struct.ComponentSchema {
     left_navbar_items: Schema.Attribute.Component<'shared.link', true>;
     logo: Schema.Attribute.Relation<'oneToOne', 'api::logo.logo'>;
     right_navbar_items: Schema.Attribute.Component<'shared.link', true>;
+  };
+}
+
+export interface ItemsContactMethod extends Struct.ComponentSchema {
+  collectionName: 'components_items_contact_methods';
+  info: {
+    description: 'Individual contact method item';
+    displayName: 'Contact Method';
+    icon: 'envelope';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
+    icon_name: Schema.Attribute.Enumeration<
+      ['faq', 'email', 'whatsapp', 'phone']
+    > &
+      Schema.Attribute.DefaultTo<'email'>;
+    link: Schema.Attribute.String;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -338,6 +467,20 @@ export interface ItemsLeftNavbarItems extends Struct.ComponentSchema {
   };
 }
 
+export interface ItemsLocations extends Struct.ComponentSchema {
+  collectionName: 'components_items_locations';
+  info: {
+    displayName: 'locations';
+    icon: 'arrowDown';
+  };
+  attributes: {
+    details: Schema.Attribute.Text;
+    households: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface ItemsRayItems extends Struct.ComponentSchema {
   collectionName: 'components_items_ray_items';
   info: {
@@ -349,6 +492,32 @@ export interface ItemsRayItems extends Struct.ComponentSchema {
     item_1: Schema.Attribute.String;
     item_2: Schema.Attribute.String;
     item_3: Schema.Attribute.String;
+  };
+}
+
+export interface ItemsStatItem extends Struct.ComponentSchema {
+  collectionName: 'components_items_stat_items';
+  info: {
+    description: 'Een enkel statistiek item voor social proof';
+    displayName: 'Stat Item';
+    icon: 'chartLine';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ItemsStats extends Struct.ComponentSchema {
+  collectionName: 'components_items_stats';
+  info: {
+    displayName: 'stats';
+    icon: 'chartPie';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    percentage: Schema.Attribute.String;
   };
 }
 
@@ -372,6 +541,26 @@ export interface SharedButton extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedContactSidebar extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_sidebars';
+  info: {
+    description: 'Sliding contact sidebar with team members and contact options';
+    displayName: 'Contact Sidebar';
+    icon: 'phone';
+  };
+  attributes: {
+    contact_methods: Schema.Attribute.Component<'items.contact-method', true>;
+    cta_button: Schema.Attribute.Component<'shared.button', false>;
+    description: Schema.Attribute.Text;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Service & contact'>;
+    opening_hours: Schema.Attribute.String;
+    team_members: Schema.Attribute.Media<'images', true>;
+  };
+}
+
 export interface SharedForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_forms';
   info: {
@@ -381,6 +570,32 @@ export interface SharedForm extends Struct.ComponentSchema {
   };
   attributes: {
     inputs: Schema.Attribute.Component<'items.input', true>;
+  };
+}
+
+export interface SharedIconText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_icon_texts';
+  info: {
+    displayName: 'icon_text';
+    icon: 'cloud';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface SharedIphoneMockup extends Struct.ComponentSchema {
+  collectionName: 'components_shared_iphone_mockups';
+  info: {
+    description: 'Single iPhone mockup with screenshot, title and description';
+    displayName: 'iPhone Mockup';
+    icon: 'phone';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    screenshot: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -515,7 +730,9 @@ declare module '@strapi/strapi' {
       'cards.graph-card': CardsGraphCard;
       'cards.ray-card': CardsRayCard;
       'cards.social-media-card': CardsSocialMediaCard;
+      'dynamic-zone.berijk-impact': DynamicZoneBerijkImpact;
       'dynamic-zone.brands': DynamicZoneBrands;
+      'dynamic-zone.contact-sidebar': DynamicZoneContactSidebar;
       'dynamic-zone.cta': DynamicZoneCta;
       'dynamic-zone.faq': DynamicZoneFaq;
       'dynamic-zone.features': DynamicZoneFeatures;
@@ -526,15 +743,24 @@ declare module '@strapi/strapi' {
       'dynamic-zone.pricing': DynamicZonePricing;
       'dynamic-zone.related-articles': DynamicZoneRelatedArticles;
       'dynamic-zone.related-products': DynamicZoneRelatedProducts;
+      'dynamic-zone.signup-form': DynamicZoneSignupForm;
+      'dynamic-zone.social-proof': DynamicZoneSocialProof;
       'dynamic-zone.testimonials': DynamicZoneTestimonials;
       'global.footer': GlobalFooter;
       'global.navbar': GlobalNavbar;
+      'items.contact-method': ItemsContactMethod;
       'items.graph-card-top-items': ItemsGraphCardTopItems;
       'items.input': ItemsInput;
       'items.left-navbar-items': ItemsLeftNavbarItems;
+      'items.locations': ItemsLocations;
       'items.ray-items': ItemsRayItems;
+      'items.stat-item': ItemsStatItem;
+      'items.stats': ItemsStats;
       'shared.button': SharedButton;
+      'shared.contact-sidebar': SharedContactSidebar;
       'shared.form': SharedForm;
+      'shared.icon-text': SharedIconText;
+      'shared.iphone-mockup': SharedIphoneMockup;
       'shared.launches': SharedLaunches;
       'shared.link': SharedLink;
       'shared.perks': SharedPerks;

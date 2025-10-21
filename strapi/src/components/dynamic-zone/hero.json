@@ -7,6 +7,16 @@
   },
   "options": {},
   "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
     "heading": {
       "type": "string"
     },
@@ -14,10 +24,14 @@
       "type": "string"
     },
     "CTAs": {
-      "displayName": "Button",
       "type": "component",
-      "repeatable": true,
-      "component": "shared.button"
+      "component": "shared.button",
+      "repeatable": true
+    },
+    "icons": {
+      "type": "component",
+      "component": "shared.icon-text",
+      "repeatable": true
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_dynamic_zone_berijk_impacts",
+  "info": {
+    "displayName": "berijk_impact",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "stats": {
+      "type": "component",
+      "component": "items.stats",
+      "repeatable": true
+    },
+    "locations": {
+      "type": "component",
+      "component": "items.locations",
+      "repeatable": true
+    },
+    "bottom_text": {
+      "type": "text"
+    },
+    "CTA": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

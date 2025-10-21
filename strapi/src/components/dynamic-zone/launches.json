@@ -1,23 +1,29 @@
 {
   "collectionName": "components_dynamic_zone_launches",
   "info": {
-    "displayName": "Launches",
-    "icon": "rocket",
-    "description": ""
+    "displayName": "App Mockups",
+    "icon": "phone",
+    "description": "iPhone mockups section with up to 4 screenshots"
   },
   "options": {},
   "attributes": {
     "heading": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "default": "Zo ziet jouw plek in de app eruit"
     },
     "sub_heading": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "default": "Hier wordt jouw bedrijf zichtbaar met PITO Partner"
     },
-    "launches": {
-      "displayName": "Launches",
+    "mockups": {
+      "displayName": "iPhone Mockup",
       "type": "component",
       "repeatable": true,
-      "component": "shared.launches"
+      "component": "shared.iphone-mockup",
+      "min": 1,
+      "max": 4
     }
   }
 }

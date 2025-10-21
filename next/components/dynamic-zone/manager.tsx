@@ -46,6 +46,18 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.related-articles': dynamic(() =>
     import('./related-articles').then((mod) => mod.RelatedArticles)
   ),
+  'dynamic-zone.berijk-impact': dynamic(() =>
+    import('./berijk-impact').then((mod) => mod.BerijkImpact)
+  ),
+  'dynamic-zone.contact-sidebar': dynamic(() =>
+    import('../contact-sidebar').then((mod) => mod.ContactSidebar)
+  ),
+  'dynamic-zone.signup-form': dynamic(() =>
+    import('./signup-form').then((mod) => mod.SignupForm)
+  ),
+  'dynamic-zone.social-proof': dynamic(() =>
+    import('./social-proof').then((mod) => mod.SocialProof)
+  ),
 };
 
 const DynamicZoneManager: React.FC<Props> = ({ dynamicZone, locale }) => {

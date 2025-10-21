@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "leads",
+  "info": {
+    "singularName": "lead",
+    "pluralName": "leads",
+    "displayName": "Lead",
+    "description": "Inschrijvingen van zakelijke en particuliere klanten"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "houseNumber": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "leadType": {
+      "type": "enumeration",
+      "enum": ["zakelijk", "particulier"],
+      "required": true,
+      "default": "particulier"
+    },
+    "message": {
+      "type": "text"
+    },
+    "pipedriveId": {
+      "type": "string",
+      "private": true
+    },
+    "pipedriveSyncStatus": {
+      "type": "enumeration",
+      "enum": ["pending", "synced", "failed"],
+      "default": "pending"
+    },
+    "pipedriveSyncError": {
+      "type": "text",
+      "private": true
+    },
+    "source": {
+      "type": "string",
+      "default": "website"
+    }
+  }
+}

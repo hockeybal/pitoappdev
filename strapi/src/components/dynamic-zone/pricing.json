@@ -17,6 +17,17 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::plan.plan"
+    },
+    "show_contact_bar": {
+      "type": "boolean",
+      "default": false
+    },
+    "contact_text": {
+      "type": "string",
+      "default": "Heb je andere wensen?"
+    },
+    "contact_email": {
+      "type": "email"
     }
   }
 }
